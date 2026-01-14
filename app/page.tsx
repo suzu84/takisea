@@ -1,9 +1,11 @@
 
+
 export default function Home() {
   return (
-    <div>
-      <h1>takisea</h1>
+    <>
+    <main>
       <p>開発中です。</p>
-    </div>
+    </main>
+    </>
   ) 
 }
