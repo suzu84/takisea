@@ -141,6 +141,13 @@ export default function Header() {
             />
           </div>
         </div>
+        <div className={styles.bubbleContainer}>
+          <div className={`${styles["bubbleContainer__bubble--1"]} ${styles.bubble}`}></div>
+          <div className={`${styles["bubbleContainer__bubble--2"]} ${styles.bubble}`}></div>
+          <div className={`${styles["bubbleContainer__bubble--3"]} ${styles.bubble}`}></div>
+          <div className={`${styles["bubbleContainer__bubble--4"]} ${styles.bubble}`}></div>
+          <div className={`${styles["bubbleContainer__bubble--5"]} ${styles.bubble}`}></div>
+        </div>
       </div>
     </>
   );
