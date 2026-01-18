@@ -399,12 +399,18 @@
   font-size: 1.6rem;
   color: #fff; 
 } */
- .splide__arrows {
-  position: relative;
- }
+ /* :global を使うことで、Next.jsによるクラス名の変換を無効化します */
+:global(.splide__arrows) {
+  display: flex !important;    /* 強制的に表示 */
+  justify-content: center;
+  gap: 15px;
+  position: relative;          /* absoluteを解除するために必要 */
+  z-index: 10;
+  width: 170px;
+  margin:  40px auto 0;
+}
 .arrow {
   position: absolute;
-  top: 110%; /* カードの下に配置 */
   width: 45px;
   height: 45px;
   background: #fff !important;
@@ -431,8 +437,8 @@ opacity: 1 !important;
   fill: #fff !important; /* 中のアイコンを白に */
 }
 /* 前後の位置を微調整 */
-:global(.splide__arrow--prev) { left: 45%; }
-:global(.splide__arrow--next) { right: 45%; }
+/* :global(.splide__arrow--prev) { left: 45%; }
+:global(.splide__arrow--next) { right: 45%; } */
 
 @media screen and (max-width:769px){
   .section--achievement {
