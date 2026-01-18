@@ -1,8 +1,74 @@
+"use client";
+
+import { useState, useEffect } from "react"; // 【追加】useEffect
 import Image from "next/image";
 import Link from "next/link";
+import cn from "classnames";
+import { motion, AnimatePresence } from "framer-motion"; // 【追加】アニメーション用
 import styles from "./index.module.css";
 
+// 【追加】スライド用の画像リスト
+const images = [
+  "/achievement01.png",
+  "/achievement02.png",
+  "/achievement03.png",
+];
+
 export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [index, setIndex] = useState(0); // 【追加】現在の画像番号を管理
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
+
+  // 【追加】4秒ごとに画像を切り替えるタイマー設定
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(timer); // クリーンアップ（メモリ漏れ防止）
+  }, []);
+
+  useEffect(() => {
+    // WordPress時代のロジックをここに移植
+    const getRandom = (min: number, max: number) =>
+      Math.random() * (max - min) + min;
+
+    const animateBubble = (bubble: HTMLElement) => {
+      const moveX = getRandom(-100, 100);
+      const moveY = getRandom(-100, 100);
+      const duration = getRandom(8000, 16000);
+
+      bubble.animate(
+        [
+          { transform: "translate(0, 0)" },
+          { transform: `translate(${moveX}px, ${moveY}px)` },
+        ],
+        {
+          duration: duration,
+          iterations: Infinity,
+          direction: "alternate",
+          easing: "ease-in-out",
+        }
+      );
+    };
+
+    // クラス名から全てのバブルを取得（styles.bubbleはビルド時に名前が変わるため注意）
+    const bubbles = document.querySelectorAll(`.${styles.bubble}`);
+
+    bubbles.forEach((el) => {
+      const bubble = el as HTMLElement;
+      // 初期位置・サイズをランダムに設定
+      bubble.style.top = `${getRandom(0, 100)}%`;
+      bubble.style.left = `${getRandom(0, 100)}%`;
+      const size = getRandom(60, 150);
+      bubble.style.width = `${size}px`;
+      bubble.style.height = `${size}px`;
+
+      animateBubble(bubble);
+    });
+  }, []); // 空の配列で「初回表示時のみ実行」
+
   return (
     <>
       <div className={styles.mainVisual}>
@@ -48,37 +114,54 @@ export default function Header() {
                 </li>
               </ul>
             </nav>
-            <div className={styles.nav__hum}>
+            <div
+              className={cn(styles.nav__hum, { [styles.active]: isOpen })}
+              onClick={toggleMenu}
+            >
               <span></span>
               <span></span>
               <span></span>
             </div>
           </div>
-          <nav className={styles["nav__menu-sp"]}>
+          <nav
+            className={cn(styles["nav__menu-sp"], { [styles.active]: isOpen })}
+          >
             <ul className={styles.nav__list}>
               <li className={styles.nav__item}>
-                <Link href="/#about">私について</Link>
+                <Link href="/#about" onClick={closeMenu}>
+                  私について
+                </Link>
               </li>
               <li className={styles.nav__item}>
-                <Link href="/#service">サービス</Link>
+                <Link href="/#service" onClick={closeMenu}>
+                  サービス
+                </Link>
               </li>
               <li className={styles.nav__item}>
-                <Link href="/#achievement">実績</Link>
+                <Link href="/#achievement" onClick={closeMenu}>
+                  実績
+                </Link>
               </li>
               <li className={styles.nav__item}>
-                <Link href="/#price">料金</Link>
+                <Link href="/#price" onClick={closeMenu}>
+                  料金
+                </Link>
               </li>
               <li className={styles.nav__item}>
-                <Link href="/#flow">制作の流れ</Link>
+                <Link href="/#flow" onClick={closeMenu}>
+                  制作の流れ
+                </Link>
               </li>
               <li className={styles.nav__item}>
-                <Link href="/column/">コラム</Link>
+                <Link href="/column/" onClick={closeMenu}>
+                  コラム
+                </Link>
               </li>
             </ul>
             <div className={styles.contactBtn}>
-              <a href="/contact/">
+              <Link href="/contact/" onClick={closeMenu}>
                 <span>お問い合わせはこちら</span>
-              </a>
+              </Link>
             </div>
           </nav>
         </header>
@@ -117,36 +200,38 @@ export default function Header() {
               私はそんなWEB事務所を作るお手伝いを日々しております。
             </p>
           </div>
+
+          {/* 【変更】スライダー部分：個別のImageタグを消して、AnimatePresenceで囲む */}
           <div className={styles.mainVisual__img}>
-            <Image
-              src="/achievement01.png"
-              alt="WEB制作"
-              width={460}
-              height={259}
-              priority
-            />
-            <Image
-              src="/achievement02.png"
-              alt="WEB制作"
-              width={460}
-              height={259}
-              priority
-            />
-            <Image
-              src="/achievement03.png"
-              alt="WEB制作"
-              width={460}
-              height={259}
-              priority
-            />
+            <AnimatePresence>
+              <motion.div
+                key={index} // これが重要！
+                initial={{ opacity: 0 }} // 出現時
+                animate={{ opacity: 1 }} // 表示中
+                exit={{ opacity: 0 }} // 消える時
+                transition={{ duration: 0.8 }} // フェードの速さ
+              >
+                <Image
+                  src={images[index]} // 配列から現在の番号の画像を出す
+                  alt="WEB制作"
+                  width={460}
+                  height={259}
+                  priority
+                />
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
+
         <div className={styles.bubbleContainer}>
-          <div className={`${styles["bubbleContainer__bubble--1"]} ${styles.bubble}`}></div>
-          <div className={`${styles["bubbleContainer__bubble--2"]} ${styles.bubble}`}></div>
-          <div className={`${styles["bubbleContainer__bubble--3"]} ${styles.bubble}`}></div>
-          <div className={`${styles["bubbleContainer__bubble--4"]} ${styles.bubble}`}></div>
-          <div className={`${styles["bubbleContainer__bubble--5"]} ${styles.bubble}`}></div>
+          {[...Array(5)].map((_, i) => (
+            <div
+              key={i}
+              className={`${styles.bubble} ${
+                styles[`bubbleContainer__bubble--${i + 1}`]
+              }`}
+            ></div>
+          ))}
         </div>
       </div>
     </>

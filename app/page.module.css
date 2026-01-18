@@ -235,7 +235,7 @@
   text-align: end;
 }
 @media screen and (max-width:769px) {
-  #about {
+  .section--about {
     max-width: 1100px;
     margin: 0 2.6%;
     padding: 100px 0 75px;
@@ -265,7 +265,7 @@
   }
 }
 /* サービス */
-#service{
+.section--service {
   padding: 100px 0;
   background: #EDF8FF;
 }
@@ -320,7 +320,7 @@
   margin-bottom: 10px;
 }
 @media screen and (max-width:769px){
-  #service{
+  .section--service{
     padding: 75px 0;
   }
   .service__content {
@@ -352,24 +352,22 @@
   }
 }
 /* 実績 */
-#achievement {
+.section--achievement {
   max-width: 1100px;
   margin: 0 auto;
   padding: 100px 0;
 }
-.achievement__list .slick-track {
-  margin-top: 50px;
-  display: inline-flex;
-  gap: 0 20px;
-}
 .achievement__item {
+  margin-top: 15px;
   background: #588BAE;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   color: #fff;
   padding: 20px 20px 50px;
   transition: transform .5s;
   position: relative;
+  overflow: hidden;
+  height: 400px;
+  z-index: 1;
 }
 .achievement__item a p:first-of-type {
   border-radius: 100vh;
@@ -385,7 +383,7 @@
 .achievement__item:hover {
   transform: translateY(-15px);
 }
-.achievement__item::before {
+/* .achievement__item::before {
   position: absolute;
   bottom: 10px;
   right: 33px;
@@ -400,46 +398,44 @@
   content: '>';
   font-size: 1.6rem;
   color: #fff; 
-}
-.achievement__arrows {
+} */
+ .splide__arrows {
+  position: relative;
+ }
+.arrow {
+  position: absolute;
+  top: 110%; /* カードの下に配置 */
+  width: 45px;
+  height: 45px;
+  background: #fff !important;
+  border: 1px solid #588BAE !important;
+  border-radius: 50%;
+opacity: 1 !important;
+  cursor: pointer; /* マウスカーソルを指の形に */
+  transition: all 0.3s ease; /* opacityだけでなく全プロパティをアニメーション対象に */
   display: flex;
-  margin: 15px auto;
+  align-items: center;
   justify-content: center;
-  gap: 0 40px;
 }
-.prev-arrow,
-.next-arrow {
-    display: block;
-    width: 50px;
-    height: 50px;
-    background: #fff;
-    border: 1px solid #588BAE;
-    border-radius: 50%;
-    transition: all .3s ease;
-    cursor: pointer;
-    position:relative;
+.arrow svg {
+  fill: #588BAE !important;
+  transition: fill 0.3s ease; /* アイコンの色変化も滑らかに */
 }
-.prev-arrow {
-    transform: rotate(180deg);
-    margin-right: 20px;
+/* --- ここから追加：ホバー時の設定 --- */
+.arrow:hover {
+  background: #588BAE !important; /* 背景を青に */
+  border-color: #588BAE !important;
+  color: #fff;
 }
-.prev-arrow::before,
-.next-arrow::before{
-    position:absolute;
-    content: "";
-    width:10px;
-    height:10px;
-    border-right: 2px solid #588BAE;
-    border-top: 2px solid #588BAE;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    margin:auto;
-    transform:rotate(45deg);
+.arrow:hover svg {
+  fill: #fff !important; /* 中のアイコンを白に */
 }
+/* 前後の位置を微調整 */
+:global(.splide__arrow--prev) { left: 45%; }
+:global(.splide__arrow--next) { right: 45%; }
+
 @media screen and (max-width:769px){
-  #achievement {
+  .section--achievement {
     max-width: 1100px;
     margin: 0 2.6%;
     padding: 75px 0 75px;
@@ -469,7 +465,7 @@
   }
 }
 /* 料金 */
-#price{
+.section--price{
   padding: 100px 0;
   background: #EDF8FF;
 }
@@ -507,6 +503,38 @@
   overflow: hidden;
 }
 
+th.premium,
+td.premium {
+  border-right: 1px solid #1a1a1a;
+}
+
+th.standard {
+  background: #9FC7E2;
+}
+
+th.business {
+  background: #588BAE;
+
+}
+th.premium {
+  background: #2E5773;
+}
+
+th:first-of-type {
+  border-top-left-radius: 10px;
+}
+
+th:last-of-type {
+  border-top-right-radius: 10px;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
+
 .annotation {
   width: 900px;
   display: block;
@@ -540,7 +568,7 @@
   display: block;
 }
 @media screen and (max-width:769px){
-  #price{
+  .section--price{
     padding: 75px 0;
     background: #EDF8FF;
   }
@@ -596,7 +624,7 @@
   }
 }
 /* 制作の流れ */
-#flow {
+.section--flow {
   max-width: 1100px;
   margin: 0 auto;
   padding: 125px 0 100px;
@@ -722,7 +750,7 @@
 }
 @media screen and (max-width:769px) {
   /* 制作の流れ */
-#flow {
+.section--flow {
   max-width: 1100px;
   margin: 0 2.6%;
   padding: 100px 0 75px;
