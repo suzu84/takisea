@@ -3,6 +3,7 @@ import { Zen_Kurenaido, Noto_Sans_JP } from "next/font/google";
 import "destyle.css"; // 他のCSSより上に書くのがコツ
 import "./globals.css";
 import Header from "./_components/Header";
+import Footer from "./_components/Footer";
 
 // app/layout.tsx
 export const metadata: Metadata = {
@@ -10,7 +11,8 @@ export const metadata: Metadata = {
     default: "TAKISEA PRODUCTION",
     template: "%s - TAKISEA PRODUCTION", // 下層ページで「コラム - TAKISEA...」とするため
   },
-  description: "東京都板橋区を拠点にホームページやLP（ランディングページ）の制作・運用を行なってます。",
+  description:
+    "東京都板橋区を拠点にホームページやLP（ランディングページ）の制作・運用を行なってます。",
   metadataBase: new URL("https://takisea.co.jp"),
   alternates: {
     canonical: "https://takisea.com/",
@@ -19,7 +21,8 @@ export const metadata: Metadata = {
     url: "https://takisea.co.jp/",
     type: "website",
     title: "TAKISEA PRODUCTION",
-    description: "東京都板橋区を拠点にホームページやLP（ランディングページ）の制作・運用を行なってます。",
+    description:
+      "東京都板橋区を拠点にホームページやLP（ランディングページ）の制作・運用を行なってます。",
     siteName: "TAKISEA PRODUCTION",
     images: [
       {
@@ -49,10 +52,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={`${notoHighlight.variable} ${zenKurenaido.variable}`}>
+    <html
+      lang="ja"
+      className={`${notoHighlight.variable} ${zenKurenaido.variable}`}
+    >
       <body>
-          <Header />
-          {children}
+        <Header />
+        {children}
+        <Footer />
       </body>
     </html>
   );

@@ -1,0 +1,44 @@
+/* フッター */
+.footer {
+  background: #2E5773;
+}
+.footer__content {
+  padding: 30px 10px 20px;
+  color: #fff;
+}
+.footerNav__list {
+  display: flex;
+  justify-content: center;
+}
+.footerNav__item {
+  padding: 5px 15px;
+  font-size: 1.4rem;
+}
+.copy {
+  text-align: center;
+  padding: 10px 0;
+  color: #fff;
+}
+.copy small {
+  font-size: 1.2rem;
+}
+@media screen and (max-width:769px) {
+    .footer__content {
+    padding: 25px 5px 25px;
+    text-align: center;
+  }
+  .footerNav__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .footerNav__item {
+    padding: 5px 10px;
+    font-size: 1.4rem;
+  }
+  .copy {
+    padding: 5px 0;
+  }
+  .copy small {
+    font-size: 1rem;
+  }
+}
