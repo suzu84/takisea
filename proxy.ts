@@ -2,6 +2,11 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function proxy(req: NextRequest) {
+  // ★ココを追加：Vercelの本番環境（Production）の場合は、Basic認証をスキップして全員通す
+  if (process.env.VERCEL_ENV === 'production') {
+    return NextResponse.next();
+  }
+
   const basicAuth = req.headers.get('authorization');
 
   // 1. 認証情報がない場合にダイアログを表示させる
