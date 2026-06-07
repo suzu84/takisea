@@ -455,6 +455,9 @@ opacity: 1 !important;
     width: 85%;
     margin: 20px auto;
   }
+  .achievement__item {
+  height: 360px;
+}
   .achievement__item a p:first-of-type {
     border-radius: 100vh;
     background: #fff;
