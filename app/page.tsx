@@ -37,7 +37,7 @@ export default function Home() {
             </div>
           </FadeIn>
           <FadeIn>
-            <p className={styles.about__name}>TAKISEA PRODUCTION </p>
+            <p className={styles.about__name}>TAKISEA PRODUCTION</p>
           </FadeIn>
         </section>
         <section
