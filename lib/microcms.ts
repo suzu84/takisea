@@ -1,9 +1,17 @@
 import { createClient } from "microcms-js-sdk";
 
-export const client = createClient({
-  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN!,
-  apiKey: process.env.MICROCMS_API_KEY!,
-});
+function createClientSafe() {
+  try {
+    return createClient({
+      serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN!,
+      apiKey: process.env.MICROCMS_API_KEY!,
+    });
+  } catch {
+    return null;
+  }
+}
+
+export const client = createClientSafe();
 
 // microCMSコンテンツの型定義
 export type Category = {
