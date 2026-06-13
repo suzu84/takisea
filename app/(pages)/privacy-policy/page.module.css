@@ -1,0 +1,103 @@
+/* プライバシーポリシーページ */
+.main {
+  margin-top: 126px;
+  background: url(/background03.png) top center / contain no-repeat fixed;
+  min-height: calc(100vh - 126px);
+  padding-bottom: 80px;
+}
+
+.pageContent {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 75px 0;
+  background: #fff;
+}
+
+.pageTitle {
+  font-size: 2.6rem;
+  font-weight: bold;
+  position: relative;
+  padding: 1rem 2rem;
+  border-bottom: 6px solid #588BAE;
+  width: 500px;
+  margin-bottom: 50px;
+}
+
+.pageTitle::before {
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 20%;
+  height: 6px;
+  content: "";
+  background: #2E5773;
+}
+
+.section {
+  margin-bottom: 50px;
+  padding: 0 2rem;
+}
+
+.section h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #EDF8FF;
+  width: auto;
+}
+
+.section h2::before {
+  content: none;
+}
+
+.section p {
+  font-size: 1.6rem;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.section ul {
+  font-size: 1.6rem;
+  line-height: 1.8;
+  padding-left: 2em;
+  margin-bottom: 15px;
+}
+
+.section ul li {
+  list-style-type: disc;
+  margin-bottom: 8px;
+}
+
+.lastUpdated {
+  text-align: right;
+  font-size: 1.4rem;
+  color: #777;
+  padding: 0 2rem;
+  margin-top: 40px;
+}
+
+@media screen and (max-width: 769px) {
+  .main {
+    margin-top: 80px;
+    background: none;
+  }
+
+  .pageContent {
+    padding: 50px 2.6%;
+  }
+
+  .pageTitle {
+    font-size: 2.3rem;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .section {
+    padding: 0;
+  }
+
+  .lastUpdated {
+    padding: 0;
+  }
+}
