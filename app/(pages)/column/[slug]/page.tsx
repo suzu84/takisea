@@ -12,6 +12,7 @@ type Props = {
 
 async function getColumn(slug: string): Promise<Column | null> {
   try {
+    if (!client) return null;
     const data = await client.getListDetail<Column>({
       endpoint: "column",
       contentId: slug,

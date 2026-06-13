@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 
 async function getColumns(): Promise<ColumnList | null> {
   try {
+    if (!client) return null;
     const data = await client.getList<{
       title: string;
       content: string;
