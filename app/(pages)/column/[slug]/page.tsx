@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { client } from "@/lib/microcms";
 import type { Column } from "@/lib/microcms";
+import ColumnSidebar from "@/app/_components/ColumnSidebar";
 import styles from "./page.module.css";
 
 type Props = {
@@ -59,7 +60,9 @@ export default async function ColumnDetailPage({ params }: Props) {
             {post.category && post.category.length > 0 && (
               <div className={styles.postCategory}>
                 {post.category.map((cat) => (
-                  <span key={cat.id}>{cat.name}</span>
+                  <Link key={cat.id} href={`/column/category/${cat.id}/`} style={{ textDecoration: "none" }}>
+                    <span>{cat.name}</span>
+                  </Link>
                 ))}
               </div>
             )}
@@ -125,33 +128,7 @@ export default async function ColumnDetailPage({ params }: Props) {
         </div>
       </article>
 
-      {/* サイドバー */}
-      <aside className={styles.sidebar}>
-        <section>
-          <div className={styles.sidebarAuthor}>
-            <div className={styles.sidebarAuthorContent}>
-              <Image
-                src="/author.jpg"
-                alt="Taki"
-                width={120}
-                height={120}
-                className={styles.sidebarProfileImg}
-              />
-              <p className={styles.sidebarAuthorName}>
-                Taki<span>運用者</span>
-              </p>
-              <p className={styles.sidebarAuthorDesc}>
-                TAKISEA PRODUCTION運用者のTakiです。
-                <br />
-                独学でWeb制作を学び、IT企業の制作部門で実務経験を経て、現在は独立しWebサイト制作を手がけています。
-              </p>
-              <p className={styles.sidebarAuthorDesc}>
-                Webサイトの運用やマーケティングについて発信をしています。
-              </p>
-            </div>
-          </div>
-        </section>
-      </aside>
+      <ColumnSidebar />
     </main>
   );
 }

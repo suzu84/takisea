@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: 70% 25%;
   max-width: 1240px;
-  margin: 126px auto 0;
+  margin: 40px auto 0;
   gap: 5%;
   padding-bottom: 80px;
 }
@@ -322,7 +322,7 @@
 @media screen and (max-width: 769px) {
   .columnMain {
     display: block;
-    margin: 80px 2.6% 0;
+    margin: 20px 2.6% 0;
   }
 
   .postTitle {

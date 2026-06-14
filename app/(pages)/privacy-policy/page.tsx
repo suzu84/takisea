@@ -87,7 +87,47 @@ export default function PrivacyPolicyPage() {
           </p>
         </section>
 
-        <p className={styles.lastUpdated}>制定日：2024年1月1日</p>
+        <section className={styles.section}>
+          <h2>お問い合わせ窓口</h2>
+          <p>
+            個人情報の取り扱いに関するご質問やご不明点、その他のお問い合わせはお問い合わせフォームよりご連絡ください。
+          </p>
+        </section>
+
+        <section className={styles.section}>
+          <h2>SSL（Secure Socket Layer）について</h2>
+          <p>
+            当社のWebサイトはSSLに対応しており、WebブラウザとWebサーバーとの通信を暗号化しています。ユーザーが入力する氏名や住所、電話番号などの個人情報は自動的に暗号化されます。
+          </p>
+        </section>
+
+        <section className={styles.section}>
+          <h2>cookieについて</h2>
+          <p>
+            cookieとは、WebサーバーがWebブラウザに送信するデータのことを指します。Webサーバーがcookieを参照してユーザーのパソコンを識別することができ、当社Webサイトを効率的に利用できます。当社Webサイトがcookieとして送るファイルは、個人を特定するような情報は含んでおりません。お使いのWebブラウザの設定により、cookieを無効にすることも可能です。
+          </p>
+        </section>
+
+        <section className={styles.section}>
+          <h2>免責事項</h2>
+          <p>
+            当社Webサイト上の情報の正確性には万全を期していますが、利用者が当社Webサイトの情報を用いて行う一切の行為に関して、一切の責任を負わないものとします。 当社は、利用者が当社Webサイトを利用したことにより生じた利用者の損害及び利用者が第三者に与えた損害に関して、一切の責任を負わないものとします。
+          </p>
+        </section>
+
+        <section className={styles.section}>
+          <h2>著作権・肖像権</h2>
+          <p>
+            当社Webサイト内の文章や画像、すべてのコンテンツは著作権・肖像権等により保護されています。無断での使用や転用は禁止されています。
+          </p>
+        </section>
+
+        <section className={styles.section}>
+          <h2>リンク</h2>
+          <p>
+            当社Webサイトへのリンクは、自由に設置していただいて構いません。ただし、Webサイトの内容等によってはリンクの設置をお断りすることがあります。
+          </p>
+        </section>
       </div>
     </main>
   );

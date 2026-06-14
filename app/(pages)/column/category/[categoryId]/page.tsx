@@ -1,51 +1,66 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { client } from "@/lib/microcms";
+import { notFound } from "next/navigation";
+import { client, getCategories } from "@/lib/microcms";
 import type { ColumnList } from "@/lib/microcms";
 import ColumnSidebar from "@/app/_components/ColumnSidebar";
-import styles from "./page.module.css";
+import styles from "../../page.module.css";
 
-export const metadata: Metadata = {
-  title: "コラム",
-  description:
-    "TAKISEA PRODUCTIONでは様々WEBサイトに関する記事を発信しております。WEBサイトを作るかどうか悩んでいる方はぜひ記事をのぞいてみてください。",
+type Props = {
+  params: Promise<{ categoryId: string }>;
 };
 
-async function getColumns(): Promise<ColumnList | null> {
+async function getCategoryData(categoryId: string) {
+  if (!client) return { columns: null, category: null };
   try {
-    if (!client) return null;
-    const data = await client.getList<{
-      title: string;
-      content: string;
-      thumbnail?: { url: string; width: number; height: number };
-      category?: { id: string; name: string }[];
-    }>({
-      endpoint: "column",
-      queries: { limit: 100, orders: "-publishedAt" },
-    });
-    return data as unknown as ColumnList;
+    const [columnsData, categories] = await Promise.all([
+      client.getList({
+        endpoint: "column",
+        queries: {
+          filters: `category[contains]${categoryId}`,
+          orders: "-publishedAt",
+          limit: 100,
+        },
+      }),
+      getCategories(),
+    ]);
+    const category = categories.find((c) => c.id === categoryId) ?? null;
+    return { columns: columnsData as unknown as ColumnList, category };
   } catch {
-    return null;
+    return { columns: null, category: null };
   }
 }
 
-export default async function ColumnPage() {
-  const data = await getColumns();
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { categoryId } = await params;
+  const { category } = await getCategoryData(categoryId);
+  if (!category) return { title: "カテゴリー" };
+  return {
+    title: `${category.name} - コラム`,
+    description: `${category.name}に関するコラム一覧です。`,
+  };
+}
+
+export default async function CategoryPage({ params }: Props) {
+  const { categoryId } = await params;
+  const { columns, category } = await getCategoryData(categoryId);
+
+  if (!category) notFound();
 
   return (
     <main className={styles.columnMain}>
       <div className={styles.columnList}>
-        <h1 className={styles.columnTitle}>記事一覧</h1>
+        <h1 className={styles.columnTitle}>{category.name}</h1>
 
-        {!data || data.contents.length === 0 ? (
+        {!columns || columns.contents.length === 0 ? (
           <div className={styles.noPost}>
             <p>まだ記事がありません。</p>
-            <Link href="/">トップページに戻る</Link>
+            <Link href="/column/">コラム一覧に戻る</Link>
           </div>
         ) : (
           <ul className={styles.postList}>
-            {data.contents.map((post) => (
+            {columns.contents.map((post) => (
               <li key={post.id} className={styles.postItem}>
                 <Link href={`/column/${post.id}/`}>
                   <div className={styles.postThumbnail}>

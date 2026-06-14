@@ -39,3 +39,16 @@ export type ColumnList = {
   offset: number;
   limit: number;
 };
+
+export async function getCategories(): Promise<Category[]> {
+  if (!client) return [];
+  try {
+    const data = await client.getList<Category>({
+      endpoint: "category",
+      queries: { limit: 100 },
+    });
+    return data.contents;
+  } catch {
+    return [];
+  }
+}

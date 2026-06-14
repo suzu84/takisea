@@ -1,8 +1,6 @@
 /* お問い合わせページ */
 .main {
-  margin-top: 126px;
-  background: url(/background03.png) top center / contain no-repeat fixed;
-  min-height: calc(100vh - 126px);
+  min-height: 100vh;
   padding-bottom: 80px;
 }
 
