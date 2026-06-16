@@ -2,7 +2,11 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function proxy(req: NextRequest) {
-  // ★ココを追加：Vercelの本番環境（Production）の場合は、Basic認証をスキップして全員通す
+  // ローカル開発環境（VERCEL_ENVが未設定）はスキップ
+  if (!process.env.VERCEL_ENV) {
+    return NextResponse.next();
+  }
+  // Vercel本番環境もスキップ
   if (process.env.VERCEL_ENV === 'production') {
     return NextResponse.next();
   }
@@ -42,5 +46,5 @@ export function proxy(req: NextRequest) {
 
 export const config = {
   // 静的ファイル（画像など）を除外して無限ループを防ぐ
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon\\.ico|.*\\.(?:jpg|jpeg|png|gif|svg|webp|ico|mp4|pdf|woff|woff2|ttf)).*)'],
 };

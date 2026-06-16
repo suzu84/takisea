@@ -12,7 +12,7 @@ import styles from "./page.module.css";
 export default function Home() {
   return (
     <>
-      <main>
+      <main className={styles.main}>
         <section
           id="about"
           className={cn(styles.section, styles["section--about"])}

@@ -1,0 +1,448 @@
+/* コラム詳細ページ */
+.columnMain {
+  display: grid;
+  grid-template-columns: 70% 25%;
+  max-width: 1240px;
+  margin: 40px auto 0;
+  gap: 5%;
+  padding-bottom: 80px;
+}
+
+.draftBanner {
+  grid-column: 1 / -1;
+  background: #fff3cd;
+  color: #7a5b00;
+  border: 1px solid #ffe69c;
+  border-radius: 4px;
+  padding: 10px 16px;
+  font-size: 1.3rem;
+  margin: 0 0 20px;
+}
+
+.draftBanner a {
+  color: #7a5b00;
+  text-decoration: underline;
+  margin-left: 10px;
+}
+
+/* 記事本文エリア */
+.postArticle {
+  min-width: 0;
+}
+
+.postHeader {
+  margin-bottom: 30px;
+}
+
+.postTitle {
+  font-size: 2.8rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.postCategory {
+  margin-bottom: 10px;
+}
+
+.postCategory span {
+  display: inline-block;
+  background: #777;
+  color: #fff;
+  padding: 5px 12px;
+  font-size: 1.2rem;
+  border-radius: 3px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.postCategory span:hover {
+  background: #555;
+  transition: background 0.3s ease;
+}
+
+.postCategory a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.postDate {
+  font-size: 1.4rem;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.postMv {
+  margin: 15px 0 25px;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  position: relative;
+}
+
+.postMv img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* 参考記事 */
+.relatedArticles {
+  margin: 20px 0 30px;
+}
+
+.relatedLabel {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+  background: #588BAE;
+  padding: 5px 14px;
+  display: inline-block;
+  border-radius: 3px 3px 0 0;
+  margin-bottom: 0;
+}
+
+.relatedCard {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-decoration: none;
+  color: #333;
+  transition: background 0.2s;
+}
+
+.relatedCard:hover {
+  background: #f4f8fb;
+}
+
+.relatedThumbnail {
+  flex-shrink: 0;
+  width: 120px;
+  height: 75px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+.relatedCardTitle {
+  font-size: 1.5rem;
+  line-height: 1.6;
+}
+
+/* 記事本文（microCMSリッチテキスト） */
+.postContent {
+  font-size: 1.6rem;
+  line-height: 1.8;
+}
+
+.postContent :global(h2) {
+  font-size: 2.6rem;
+  font-weight: bold;
+  position: relative;
+  padding: 1rem 2rem;
+  border-bottom: 6px solid #588BAE;
+  width: 90%;
+  margin: 40px 0 20px;
+}
+
+.postContent :global(h2)::before {
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 20%;
+  height: 6px;
+  content: "";
+  background: #2E5773;
+}
+
+.postContent :global(h3) {
+  font-size: 2.2rem;
+  font-weight: bold;
+  position: relative;
+  padding: 1rem 2rem;
+  border-left: 4px solid #588BAE;
+  margin: 30px 0;
+}
+
+.postContent :global(p) {
+  margin-bottom: 16px;
+}
+
+.postContent :global(ul) {
+  margin: 15px 0;
+  font-size: 1.6rem;
+  list-style-position: inside;
+}
+
+.postContent :global(ul li) {
+  list-style-type: disc;
+  margin: 10px 0;
+}
+
+.postContent :global(ol) {
+  margin: 15px 0;
+  font-size: 1.6rem;
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+
+.postContent :global(ol li) {
+  margin: 10px 0;
+}
+
+.postContent :global(img) {
+  max-width: 100%;
+  height: auto;
+  margin: 15px 0;
+}
+
+.postContent :global(a) {
+  color: #0f9cb8;
+  text-decoration: underline;
+}
+
+.postContent :global(a:hover) {
+  opacity: 0.7;
+}
+
+.postContent :global(blockquote) {
+  background: #ded9d9;
+  padding: 15px;
+  margin: 10px 0;
+}
+
+.postContent :global(table) {
+  margin: 20px 0;
+  font-size: 1.4rem;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.postContent :global(th),
+.postContent :global(td) {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+}
+
+/* 著者（本文下） */
+.author {
+  margin: 50px 0;
+  padding: 20px;
+  border: 1px solid #afafaf;
+  border-radius: 2.5px;
+}
+
+.authorTopic {
+  border-bottom: 1px solid #afafaf;
+  padding-bottom: 15px;
+  margin-bottom: 0;
+}
+
+.authorTopic p {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.authorContent {
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.authorImg {
+  flex-shrink: 0;
+}
+
+.authorProfileImg {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 2px;
+  border: 1px solid #afafaf;
+  display: block;
+}
+
+.authorName {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.authorTxt p {
+  font-size: 1.4rem;
+  color: #625c5c;
+  margin-bottom: 8px;
+}
+
+/* 戻るボタン */
+.postBtn {
+  margin: 60px 0;
+  text-align: center;
+}
+
+.postBtn a {
+  padding: 15px 20px;
+  color: #588BAE;
+  border: 1px solid #588BAE;
+  border-radius: 100vh;
+  font-size: 1.6rem;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  transition: color 0.4s ease;
+  display: inline-block;
+  max-width: 300px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.postBtn a::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 100vh;
+  transform: scale(0, 1);
+  transform-origin: left top;
+  transition: 0.2s cubic-bezier(0.45, 0, 0.55, 1);
+  z-index: -1;
+  background: #588BAE;
+}
+
+.postBtn a:hover::after {
+  transform: scale(1, 1);
+}
+
+.postBtn a:hover span {
+  color: #fff;
+}
+
+/* サイドバー */
+.sidebar {
+  padding: 20px 0;
+}
+
+.sideTitle {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  position: relative;
+  text-align: center;
+}
+
+.sideTitle::after {
+  content: "";
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 3px;
+  background: #588BAE;
+}
+
+.sidebarAuthor {
+  padding: 10px;
+  border: 1px solid #afafaf;
+  border-radius: 2.5px;
+}
+
+.sidebarAuthorContent {
+  text-align: center;
+}
+
+.sidebarProfileImg {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 15px auto 5px;
+  padding: 2px;
+  border: 1px solid #afafaf;
+  display: block;
+}
+
+.sidebarAuthorName {
+  font-weight: bold;
+  line-height: 1.3;
+  margin: 10px 0 15px;
+}
+
+.sidebarAuthorName > span {
+  font-size: 1.2rem;
+  color: #777;
+  font-weight: normal;
+  display: block;
+}
+
+.sidebarAuthorDesc {
+  font-size: 1.4rem;
+  text-align: left;
+  margin-bottom: 10px;
+  color: #625c5c;
+}
+
+@media screen and (max-width: 769px) {
+  .columnMain {
+    display: block;
+    margin: 20px 2.6% 0;
+  }
+
+  .postTitle {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
+  .postCategory span {
+    font-size: 1rem;
+  }
+
+  .postContent :global(h2) {
+    font-size: 2.3rem;
+    width: 100%;
+    margin: 30px 0 15px;
+  }
+
+  .postContent :global(h3) {
+    font-size: 2rem;
+    padding: 0.8rem 1.8rem;
+    margin: 25px 0;
+  }
+
+  .postContent :global(p) {
+    margin-bottom: 14px;
+  }
+
+  .author {
+    margin: 35px 0;
+    padding: 15px;
+  }
+
+  .authorTopic p {
+    font-size: 1.8rem;
+  }
+
+  .authorContent {
+    padding-top: 15px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .authorTxt p {
+    font-size: 1.4rem;
+  }
+
+  .sidebar {
+    display: none;
+  }
+}

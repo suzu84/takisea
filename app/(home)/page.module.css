@@ -1,4 +1,13 @@
 @charset "UTF-8";
+.main {
+  background: url(/background03.png) top center / contain no-repeat fixed;
+}
+
+@media screen and (max-width: 769px) {
+  .main {
+    background: none;
+  }
+}
 /* header_contact */
 .nav__item.contact a {
   padding: 20px 30px;
