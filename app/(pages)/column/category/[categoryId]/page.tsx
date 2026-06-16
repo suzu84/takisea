@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { client, getCategories } from "@/lib/microcms";
-import type { ColumnList } from "@/lib/microcms";
+import type { Column, ColumnList } from "@/lib/microcms";
 import ColumnSidebar from "@/app/_components/ColumnSidebar";
 import styles from "../../page.module.css";
 
@@ -18,7 +18,7 @@ async function getCategoryData(categoryId: string) {
       client.getList({
         endpoint: "column",
         queries: {
-          filters: `category[contains]${categoryId}`,
+          filters: `category1[contains]${categoryId}`,
           orders: "-publishedAt",
           limit: 100,
         },
@@ -60,13 +60,14 @@ export default async function CategoryPage({ params }: Props) {
           </div>
         ) : (
           <ul className={styles.postList}>
-            {columns.contents.map((post) => (
-              <li key={post.id} className={styles.postItem}>
-                <Link href={`/column/${post.id}/`}>
+            {columns.contents.map((post) => {
+              const cardImage = (post as Column).mv ?? post.thumbnail;
+              return (
+                <li key={post.id} className={styles.postItem}>
                   <div className={styles.postThumbnail}>
-                    {post.thumbnail ? (
+                    {cardImage ? (
                       <Image
-                        src={post.thumbnail.url}
+                        src={cardImage.url}
                         alt={post.title}
                         fill
                         style={{ objectFit: "cover" }}
@@ -77,10 +78,10 @@ export default async function CategoryPage({ params }: Props) {
                     )}
                   </div>
                   <div className={styles.postMeta}>
-                    {post.category && post.category.length > 0 && (
+                    {post.category1 && post.category1.length > 0 && (
                       <div className={styles.postCategory}>
-                        {post.category.map((cat) => (
-                          <Link key={cat.id} href={`/column/category/${cat.id}/`} style={{ textDecoration: "none" }}>
+                        {post.category1.map((cat) => (
+                          <Link key={cat.id} href={`/column/category/${cat.id}/`} className={styles.categoryLink}>
                             <span>{cat.name}</span>
                           </Link>
                         ))}
@@ -95,9 +96,10 @@ export default async function CategoryPage({ params }: Props) {
                       </time>
                     </div>
                   </div>
-                </Link>
-              </li>
-            ))}
+                  <Link href={`/column/${post.id}/`} className={styles.cardLink} aria-label={post.title} />
+                </li>
+              );
+            })}
           </ul>
         )}
       </div>

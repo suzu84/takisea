@@ -1,22 +1,27 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import { client } from "@/lib/microcms";
-import type { Column } from "@/lib/microcms";
+import type { Column, Block } from "@/lib/microcms";
+import { processContent, processBlocks } from "@/lib/toc";
+import TableOfContents from "@/app/_components/TableOfContents";
 import ColumnSidebar from "@/app/_components/ColumnSidebar";
 import styles from "./page.module.css";
 
 type Props = {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ draftKey?: string }>;
 };
 
-async function getColumn(slug: string): Promise<Column | null> {
+async function getColumn(slug: string, draftKey?: string): Promise<Column | null> {
   try {
     if (!client) return null;
     const data = await client.getListDetail<Column>({
       endpoint: "column",
       contentId: slug,
+      queries: { depth: 2, ...(draftKey ? { draftKey } : {}) },
     });
     return data;
   } catch {
@@ -24,17 +29,28 @@ async function getColumn(slug: string): Promise<Column | null> {
   }
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getColumn(slug);
+  const { draftKey } = await searchParams;
+  const post = await getColumn(slug, draftKey);
 
   if (!post) {
     return { title: "記事が見つかりません" };
   }
 
+  const rawBlocks = post.blocks ?? post.add;
+  const blocksArray = Array.isArray(rawBlocks) ? rawBlocks : [];
+  const description = blocksArray.length > 0
+    ? blocksArray
+        .filter((b) => b.richText)
+        .map((b) => b.richText!.replace(/<[^>]*>/g, ""))
+        .join("")
+        .slice(0, 120)
+    : (post.content ?? "").replace(/<[^>]*>/g, "").slice(0, 120);
+
   return {
     title: post.title,
-    description: post.content.replace(/<[^>]*>/g, "").slice(0, 120),
+    description,
     openGraph: {
       title: `${post.title} - TAKISEA PRODUCTION`,
       images: post.thumbnail ? [{ url: post.thumbnail.url }] : [],
@@ -42,27 +58,58 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function ColumnDetailPage({ params }: Props) {
+export default async function ColumnDetailPage({ params, searchParams }: Props) {
   const { slug } = await params;
-  const post = await getColumn(slug);
+  const { draftKey } = await searchParams;
+  const { isEnabled: isDraft } = await draftMode();
+  const post = await getColumn(slug, isDraft ? draftKey : undefined);
 
   if (!post) {
     notFound();
   }
 
+  const rawBlocks = post.blocks ?? post.add;
+  const blocksArray = Array.isArray(rawBlocks) ? rawBlocks : [];
+  const hasBlocks = blocksArray.length > 0;
+
+  // ブロック方式 or 旧contentフォールバック
+  let tocItems: ReturnType<typeof processContent>["tocItems"] = [];
+  let processedContent: string | null = null;
+  let renderedBlocks: Block[] = [];
+
+  if (hasBlocks) {
+    const richTexts = blocksArray.map((b) => b.richText ?? "");
+    const { processedChunks, tocItems: items } = processBlocks(richTexts);
+    tocItems = items;
+    renderedBlocks = blocksArray.map((block, i) => ({
+      ...block,
+      richText: processedChunks[i],
+    }));
+  } else {
+    const { processedHtml, tocItems: items } = processContent(post.content ?? "");
+    tocItems = items;
+    processedContent = processedHtml;
+  }
+
   return (
     <main className={styles.columnMain}>
+      {isDraft && (
+        <div className={styles.draftBanner}>
+          プレビュー中（下書き表示）
+          <Link href="/api/draft-disable">プレビューを終了</Link>
+        </div>
+      )}
       <article className={styles.postArticle}>
         <div className={styles.postHeader}>
           <h1 className={styles.postTitle}>{post.title}</h1>
 
           <div className={styles.postMeta}>
-            {post.category && post.category.length > 0 && (
+            {post.category1 && post.category1.length > 0 && (
               <div className={styles.postCategory}>
-                {post.category.map((cat) => (
-                  <Link key={cat.id} href={`/column/category/${cat.id}/`} style={{ textDecoration: "none" }}>
-                    <span>{cat.name}</span>
-                  </Link>
+                {post.category1.map((cat) => (
+                  <span key={cat.id}>
+                    <Link href={`/column/category/${cat.id}/`}>{cat.name}</Link>
+                  </span>
                 ))}
               </div>
             )}
@@ -73,10 +120,10 @@ export default async function ColumnDetailPage({ params }: Props) {
             </div>
           </div>
 
-          {post.thumbnail && (
-            <div className={styles.postThumbnail}>
+          {(post.mv ?? post.thumbnail) && (
+            <div className={styles.postMv}>
               <Image
-                src={post.thumbnail.url}
+                src={(post.mv ?? post.thumbnail)!.url}
                 alt={post.title}
                 fill
                 style={{ objectFit: "cover" }}
@@ -87,11 +134,52 @@ export default async function ColumnDetailPage({ params }: Props) {
           )}
         </div>
 
-        {/* 記事本文（microCMSのリッチテキストHTMLをそのままレンダリング） */}
-        <div
-          className={styles.postContent}
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+        {/* 目次 */}
+        <TableOfContents items={tocItems} />
+
+        {/* 記事本文 */}
+        {hasBlocks ? (
+          renderedBlocks.map((block, i) => {
+            if (block.relatedArticle) {
+              const article = block.relatedArticle;
+              const articleImage = article.mv ?? article.thumbnail;
+              return (
+                <div key={i} className={styles.relatedArticles}>
+                  <p className={styles.relatedLabel}>参考記事</p>
+                  <Link href={`/column/${article.id}/`} className={styles.relatedCard}>
+                    {articleImage && (
+                      <div className={styles.relatedThumbnail}>
+                        <Image
+                          src={articleImage.url}
+                          alt={article.title}
+                          fill
+                          style={{ objectFit: "cover" }}
+                          sizes="120px"
+                        />
+                      </div>
+                    )}
+                    <p className={styles.relatedCardTitle}>{article.title}</p>
+                  </Link>
+                </div>
+              );
+            }
+            if (block.richText) {
+              return (
+                <div
+                  key={i}
+                  className={styles.postContent}
+                  dangerouslySetInnerHTML={{ __html: block.richText }}
+                />
+              );
+            }
+            return null;
+          })
+        ) : (
+          <div
+            className={styles.postContent}
+            dangerouslySetInnerHTML={{ __html: processedContent! }}
+          />
+        )}
 
         {/* 著者プロフィール */}
         <div className={styles.author}>

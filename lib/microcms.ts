@@ -19,16 +19,44 @@ export type Category = {
   name: string;
 };
 
-export type Column = {
+export type RelatedArticle = {
   id: string;
   title: string;
-  content: string;
   thumbnail?: {
     url: string;
     width: number;
     height: number;
   };
-  category?: Category[];
+  mv?: {
+    url: string;
+    width: number;
+    height: number;
+  };
+};
+
+export type Block = {
+  fieldId?: string;
+  richText?: string;
+  relatedArticle?: RelatedArticle;
+};
+
+export type Column = {
+  id: string;
+  title: string;
+  content?: string;
+  thumbnail?: {
+    url: string;
+    width: number;
+    height: number;
+  };
+  mv?: {
+    url: string;
+    width: number;
+    height: number;
+  };
+  category1?: Category[];
+  blocks?: Block[];
+  add?: Block[];
   publishedAt: string;
   updatedAt: string;
 };

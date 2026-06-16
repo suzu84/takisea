@@ -19,7 +19,8 @@ async function getColumns(): Promise<ColumnList | null> {
       title: string;
       content: string;
       thumbnail?: { url: string; width: number; height: number };
-      category?: { id: string; name: string }[];
+      category1?: { id: string; name: string }[];
+      mv?: { url: string; width: number; height: number };
     }>({
       endpoint: "column",
       queries: { limit: 100, orders: "-publishedAt" },
@@ -45,13 +46,14 @@ export default async function ColumnPage() {
           </div>
         ) : (
           <ul className={styles.postList}>
-            {data.contents.map((post) => (
-              <li key={post.id} className={styles.postItem}>
-                <Link href={`/column/${post.id}/`}>
+            {data.contents.map((post) => {
+              const cardImage = post.mv ?? post.thumbnail;
+              return (
+                <li key={post.id} className={styles.postItem}>
                   <div className={styles.postThumbnail}>
-                    {post.thumbnail ? (
+                    {cardImage ? (
                       <Image
-                        src={post.thumbnail.url}
+                        src={cardImage.url}
                         alt={post.title}
                         fill
                         style={{ objectFit: "cover" }}
@@ -62,10 +64,10 @@ export default async function ColumnPage() {
                     )}
                   </div>
                   <div className={styles.postMeta}>
-                    {post.category && post.category.length > 0 && (
+                    {post.category1 && post.category1.length > 0 && (
                       <div className={styles.postCategory}>
-                        {post.category.map((cat) => (
-                          <Link key={cat.id} href={`/column/category/${cat.id}/`} style={{ textDecoration: "none" }}>
+                        {post.category1.map((cat) => (
+                          <Link key={cat.id} href={`/column/category/${cat.id}/`} className={styles.categoryLink}>
                             <span>{cat.name}</span>
                           </Link>
                         ))}
@@ -80,9 +82,10 @@ export default async function ColumnPage() {
                       </time>
                     </div>
                   </div>
-                </Link>
-              </li>
-            ))}
+                  <Link href={`/column/${post.id}/`} className={styles.cardLink} aria-label={post.title} />
+                </li>
+              );
+            })}
           </ul>
         )}
       </div>

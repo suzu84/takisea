@@ -41,11 +41,13 @@
 }
 
 .postItem {
+  position: relative;
   background: #fff;
   border-radius: 5px;
   overflow: hidden;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
   transition: transform 0.5s;
+  cursor: pointer;
 }
 
 .postItem:hover {
@@ -59,6 +61,7 @@
   padding-bottom: 56.25%;
   overflow: hidden;
   position: relative;
+  z-index: 0;
 }
 
 .postThumbnail img {
@@ -89,8 +92,22 @@
   padding: 15px 10px;
 }
 
+.cardLink {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
 .postCategory {
   margin-bottom: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.categoryLink {
+  text-decoration: none;
+  position: relative;
+  z-index: 2;
 }
 
 .postCategory span {
@@ -102,6 +119,11 @@
   border-radius: 3px;
   margin-right: 6px;
   margin-bottom: 6px;
+}
+
+.postCategory span:hover {
+  background: #555;
+  transition: background 0.3s ease;
 }
 
 .postTitle {

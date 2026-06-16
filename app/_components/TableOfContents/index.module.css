@@ -1,0 +1,78 @@
+.toc {
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 16px 20px;
+  margin: 30px 0;
+  font-size: 1.5rem;
+}
+
+.tocHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #588BAE;
+}
+
+.tocTitle {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.tocToggle {
+  background: none;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 3px 12px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #555;
+}
+
+.tocToggle:hover {
+  background: #eee;
+}
+
+.tocList {
+  margin: 0;
+  padding-left: 0;
+  counter-reset: toc-h2;
+  list-style: none;
+}
+
+.h2Item {
+  counter-increment: toc-h2;
+  counter-reset: toc-h3;
+  margin: 8px 0;
+}
+
+.h2Item::before {
+  content: counter(toc-h2) ". ";
+  color: #588BAE;
+  font-weight: bold;
+}
+
+.h3Item {
+  counter-increment: toc-h3;
+  margin: 5px 0 5px 20px;
+}
+
+.h3Item::before {
+  content: counter(toc-h2) "-" counter(toc-h3) ". ";
+  color: #888;
+}
+
+.h2Item a,
+.h3Item a {
+  color: #333;
+  text-decoration: none;
+  line-height: 1.6;
+}
+
+.h2Item a:hover,
+.h3Item a:hover {
+  color: #588BAE;
+  text-decoration: underline;
+}
