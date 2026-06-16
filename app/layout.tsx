@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://takisea.com/",
   },
+  robots: {
+    index: false,
+    follow: false,
+  },
   openGraph: {
     url: "https://takisea.co.jp/",
     type: "website",
