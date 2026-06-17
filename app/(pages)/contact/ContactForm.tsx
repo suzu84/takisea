@@ -1,7 +1,9 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useRef } from "react";
 import Link from "next/link";
+import { Turnstile } from "@marsidev/react-turnstile";
+import type { TurnstileInstance } from "@marsidev/react-turnstile";
 import { submitContact } from "./actions";
 import styles from "./page.module.css";
 
@@ -15,6 +17,8 @@ export default function ContactForm() {
   const [values, setValues] = useState<FormValues>(initialValues);
   const [errorMsg, setErrorMsg] = useState("");
   const [isPending, startTransition] = useTransition();
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
+  const turnstileRef = useRef<TurnstileInstance>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -31,6 +35,10 @@ export default function ContactForm() {
       setErrorMsg("正しいメールアドレスを入力してください。");
       return;
     }
+    if (!turnstileToken) {
+      setErrorMsg("認証が完了していません。しばらく待ってから再度お試しください。");
+      return;
+    }
     setErrorMsg("");
     setStep("confirm");
   };
@@ -41,11 +49,14 @@ export default function ContactForm() {
       fd.set("name", values.name);
       fd.set("email", values.email);
       fd.set("message", values.message);
+      fd.set("cfTurnstileResponse", turnstileToken);
       const result = await submitContact({ status: "idle" }, fd);
       if (result.status === "success") {
         setStep("complete");
       } else {
         setErrorMsg(result.message ?? "送信に失敗しました。");
+        turnstileRef.current?.reset();
+        setTurnstileToken("");
         setStep("input");
       }
     });
@@ -147,6 +158,14 @@ export default function ContactForm() {
           onChange={handleChange}
         />
       </div>
+
+      <Turnstile
+        ref={turnstileRef}
+        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+        onSuccess={(token) => setTurnstileToken(token)}
+        onExpire={() => setTurnstileToken("")}
+        options={{ language: "ja" }}
+      />
 
       {errorMsg && <span className={styles.errorMsg}>{errorMsg}</span>}
 

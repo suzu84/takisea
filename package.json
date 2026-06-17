@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@marsidev/react-turnstile": "^1.5.3",
     "@splidejs/react-splide": "^0.7.12",
     "classnames": "^2.5.1",
     "destyle.css": "^4.0.1",
