@@ -1,5 +1,7 @@
 "use server";
 
+import { Resend } from "resend";
+
 export type ContactState = {
   status: "idle" | "success" | "error";
   message?: string;
@@ -13,33 +15,45 @@ export async function submitContact(
   const email = formData.get("email") as string;
   const message = formData.get("message") as string;
 
-  // バリデーション
   if (!name || !email || !message) {
     return { status: "error", message: "すべての項目を入力してください。" };
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
-    return {
-      status: "error",
-      message: "正しいメールアドレスを入力してください。",
-    };
+    return { status: "error", message: "正しいメールアドレスを入力してください。" };
   }
 
-  // TODO: メール送信の実装
-  // 例: Resend, NodeMailer, SendGrid など任意のサービスを使用してください
-  // 環境変数 CONTACT_FORM_TO にメール送信先アドレスを設定してください
-  //
-  // import { Resend } from 'resend';
-  // const resend = new Resend(process.env.RESEND_API_KEY);
-  // await resend.emails.send({
-  //   from: 'noreply@takisea.co.jp',
-  //   to: process.env.CONTACT_FORM_TO!,
-  //   subject: `お問い合わせ: ${name}様`,
-  //   text: `名前: ${name}\nメール: ${email}\n\n${message}`,
-  // });
+  // Turnstileトークン検証
+  const cfToken = formData.get("cfTurnstileResponse") as string;
+  if (!cfToken) {
+    return { status: "error", message: "認証トークンがありません。ページを再読み込みしてください。" };
+  }
+  const verifyRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      secret: process.env.TURNSTILE_SECRET_KEY,
+      response: cfToken,
+    }),
+  });
+  const verifyData = await verifyRes.json();
+  if (!verifyData.success) {
+    return { status: "error", message: "認証に失敗しました。再度お試しください。" };
+  }
 
-  console.log("Contact form submission:", { name, email, message });
+  try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    await resend.emails.send({
+      from: "onboarding@resend.dev",
+      to: process.env.CONTACT_FORM_TO!,
+      subject: `【お問い合わせ】${name}様よりお問い合わせが届きました`,
+      text: `お名前: ${name}\nメールアドレス: ${email}\n\n${message}`,
+      replyTo: email,
+    });
+  } catch {
+    return { status: "error", message: "送信に失敗しました。時間をおいて再度お試しください。" };
+  }
 
   return { status: "success" };
 }

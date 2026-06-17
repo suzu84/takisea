@@ -175,7 +175,7 @@
 
 @media screen and (max-width:769px) {
   .mainVisual {
-    height: 970px;
+    height: 870px;
   }
   .mainVisual__content {
     display: flex;
@@ -465,8 +465,15 @@ opacity: 1 !important;
     margin: 20px auto;
   }
   .achievement__item {
-  height: 360px;
-}
+    height: auto;
+  }
+
+  .achievement__item img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: none !important;
+  }
+
   .achievement__item a p:first-of-type {
     border-radius: 100vh;
     background: #fff;
