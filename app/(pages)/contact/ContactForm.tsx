@@ -1,19 +1,57 @@
 "use client";
 
-import { useActionState } from "react";
+import { useState, useTransition } from "react";
 import Link from "next/link";
-import { submitContact, type ContactState } from "./actions";
+import { submitContact } from "./actions";
 import styles from "./page.module.css";
 
-const initialState: ContactState = { status: "idle" };
+type FormValues = { name: string; email: string; message: string };
+type Step = "input" | "confirm" | "complete";
+
+const initialValues: FormValues = { name: "", email: "", message: "" };
 
 export default function ContactForm() {
-  const [state, formAction, isPending] = useActionState(
-    submitContact,
-    initialState
-  );
+  const [step, setStep] = useState<Step>("input");
+  const [values, setValues] = useState<FormValues>(initialValues);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [isPending, startTransition] = useTransition();
 
-  if (state.status === "success") {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleToConfirm = (e: React.FormEvent) => {
+    e.preventDefault();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!values.name || !values.email || !values.message) {
+      setErrorMsg("すべての項目を入力してください。");
+      return;
+    }
+    if (!emailRegex.test(values.email)) {
+      setErrorMsg("正しいメールアドレスを入力してください。");
+      return;
+    }
+    setErrorMsg("");
+    setStep("confirm");
+  };
+
+  const handleSubmit = () => {
+    startTransition(async () => {
+      const fd = new FormData();
+      fd.set("name", values.name);
+      fd.set("email", values.email);
+      fd.set("message", values.message);
+      const result = await submitContact({ status: "idle" }, fd);
+      if (result.status === "success") {
+        setStep("complete");
+      } else {
+        setErrorMsg(result.message ?? "送信に失敗しました。");
+        setStep("input");
+      }
+    });
+  };
+
+  if (step === "complete") {
     return (
       <div className={styles.successMessage}>
         <h2>送信完了</h2>
@@ -26,8 +64,49 @@ export default function ContactForm() {
     );
   }
 
+  if (step === "confirm") {
+    return (
+      <div className={styles.contactContent}>
+        <p className={styles.confirmNote}>以下の内容で送信します。ご確認ください。</p>
+        <dl className={styles.confirmList}>
+          <div className={styles.confirmItem}>
+            <dt>お名前</dt>
+            <dd>{values.name}</dd>
+          </div>
+          <div className={styles.confirmItem}>
+            <dt>メールアドレス</dt>
+            <dd>{values.email}</dd>
+          </div>
+          <div className={styles.confirmItem}>
+            <dt>お問い合わせ内容</dt>
+            <dd className={styles.confirmMessage}>{values.message}</dd>
+          </div>
+        </dl>
+        {errorMsg && <span className={styles.errorMsg}>{errorMsg}</span>}
+        <div className={styles.confirmBtns}>
+          <button
+            type="button"
+            onClick={() => setStep("input")}
+            className={styles.backBtn}
+            disabled={isPending}
+          >
+            戻る
+          </button>
+          <button
+            type="button"
+            onClick={handleSubmit}
+            className={styles.submitBtn}
+            disabled={isPending}
+          >
+            {isPending ? "送信中..." : "送信する"}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <form action={formAction} className={styles.contactContent}>
+    <form onSubmit={handleToConfirm} className={styles.contactContent}>
       <div className={styles.formGroup}>
         <label htmlFor="name">
           お名前<span className={styles.required}>必須</span>
@@ -37,7 +116,8 @@ export default function ContactForm() {
           id="name"
           name="name"
           placeholder="例：山田 太郎"
-          required
+          value={values.name}
+          onChange={handleChange}
         />
       </div>
 
@@ -50,7 +130,8 @@ export default function ContactForm() {
           id="email"
           name="email"
           placeholder="例：example@email.com"
-          required
+          value={values.email}
+          onChange={handleChange}
         />
       </div>
 
@@ -62,17 +143,16 @@ export default function ContactForm() {
           id="message"
           name="message"
           placeholder="お問い合わせ内容をご入力ください"
-          required
+          value={values.message}
+          onChange={handleChange}
         />
       </div>
 
-      {state.status === "error" && (
-        <span className={styles.errorMsg}>{state.message}</span>
-      )}
+      {errorMsg && <span className={styles.errorMsg}>{errorMsg}</span>}
 
       <div className={styles.submitWrap}>
-        <button type="submit" className={styles.submitBtn} disabled={isPending}>
-          {isPending ? "送信中..." : "送信する"}
+        <button type="submit" className={styles.submitBtn}>
+          確認する
         </button>
       </div>
     </form>
