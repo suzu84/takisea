@@ -136,7 +136,10 @@ export default async function ColumnDetailPage({ params, searchParams }: Props) 
 
         {/* リード文 */}
         {post.readTxt && (
-          <p className={styles.readTxt}>{post.readTxt}</p>
+          <div
+            className={styles.readTxt}
+            dangerouslySetInnerHTML={{ __html: post.readTxt }}
+          />
         )}
 
         {/* 目次 */}
