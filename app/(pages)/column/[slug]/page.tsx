@@ -38,22 +38,39 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     return { title: "記事が見つかりません" };
   }
 
-  const rawBlocks = post.blocks ?? post.add;
-  const blocksArray = Array.isArray(rawBlocks) ? rawBlocks : [];
-  const description = blocksArray.length > 0
-    ? blocksArray
-        .filter((b) => b.richText)
-        .map((b) => b.richText!.replace(/<[^>]*>/g, ""))
-        .join("")
-        .slice(0, 120)
-    : (post.content ?? "").replace(/<[^>]*>/g, "").slice(0, 120);
+  const image = post.mv ?? post.thumbnail;
+  const pageUrl = `https://takisea.com/column/${slug}/`;
+
+  // descriptionフィールド優先、なければ本文から抽出
+  const description = post.description ?? (() => {
+    const rawBlocks = post.blocks ?? post.add;
+    const blocksArray = Array.isArray(rawBlocks) ? rawBlocks : [];
+    return blocksArray.length > 0
+      ? blocksArray
+          .filter((b) => b.richText)
+          .map((b) => b.richText!.replace(/<[^>]*>/g, ""))
+          .join("")
+          .slice(0, 120)
+      : (post.content ?? "").replace(/<[^>]*>/g, "").slice(0, 120);
+  })();
 
   return {
     title: post.title,
     description,
+    alternates: { canonical: pageUrl },
     openGraph: {
-      title: `${post.title} - TAKISEA PRODUCTION`,
-      images: post.thumbnail ? [{ url: post.thumbnail.url }] : [],
+      type: "article",
+      url: pageUrl,
+      title: post.title,
+      description,
+      siteName: "TAKISEA PRODUCTION",
+      images: image ? [{ url: image.url, width: image.width, height: image.height }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description,
+      images: image ? [image.url] : [],
     },
   };
 }
