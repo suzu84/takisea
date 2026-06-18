@@ -134,6 +134,11 @@ export default async function ColumnDetailPage({ params, searchParams }: Props) 
           )}
         </div>
 
+        {/* リード文 */}
+        {post.readTxt && (
+          <p className={styles.readTxt}>{post.readTxt}</p>
+        )}
+
         {/* 目次 */}
         <TableOfContents items={tocItems} />
 
