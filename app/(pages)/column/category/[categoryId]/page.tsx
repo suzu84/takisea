@@ -91,8 +91,8 @@ export default async function CategoryPage({ params }: Props) {
                       <p>{post.title}</p>
                     </div>
                     <div className={styles.postDate}>
-                      <time dateTime={post.publishedAt.split("T")[0]}>
-                        {new Date(post.publishedAt).toLocaleDateString("ja-JP")}
+                      <time dateTime={(post.publishedAt ?? post.updatedAt).split("T")[0]}>
+                        {new Date(post.publishedAt ?? post.updatedAt).toLocaleDateString("ja-JP")}
                       </time>
                     </div>
                   </div>
