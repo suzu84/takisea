@@ -71,6 +71,12 @@
   margin-bottom: 15px;
 }
 
+.readTxt {
+  margin: 0 0 24px;
+  line-height: 1.8;
+  color: #444;
+}
+
 .postMv {
   margin: 15px 0 25px;
   width: 100%;
