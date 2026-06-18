@@ -165,39 +165,37 @@ export default async function ColumnDetailPage({ params, searchParams }: Props) 
         {/* 記事本文 */}
         {hasBlocks ? (
           renderedBlocks.map((block, i) => {
-            if (block.relatedArticle) {
-              const article = block.relatedArticle;
-              const articleImage = article.mv ?? article.thumbnail;
-              return (
-                <div key={i} className={styles.relatedArticles}>
-                  <p className={styles.relatedLabel}>参考記事</p>
-                  <Link href={`/column/${article.id}/`} className={styles.relatedCard}>
-                    {articleImage && (
-                      <div className={styles.relatedThumbnail}>
-                        <Image
-                          src={articleImage.url}
-                          alt={article.title}
-                          fill
-                          style={{ objectFit: "cover" }}
-                          sizes="120px"
-                        />
-                      </div>
-                    )}
-                    <p className={styles.relatedCardTitle}>{article.title}</p>
-                  </Link>
-                </div>
-              );
-            }
-            if (block.richText) {
-              return (
-                <div
-                  key={i}
-                  className={styles.postContent}
-                  dangerouslySetInnerHTML={{ __html: block.richText }}
-                />
-              );
-            }
-            return null;
+            const article = block.relatedArticle;
+            const articleImage = article ? (article.mv ?? article.thumbnail) : null;
+            return (
+              <div key={i}>
+                {block.richText && (
+                  <div
+                    className={styles.postContent}
+                    dangerouslySetInnerHTML={{ __html: block.richText }}
+                  />
+                )}
+                {article && (
+                  <div className={styles.relatedArticles}>
+                    <p className={styles.relatedLabel}>参考記事</p>
+                    <Link href={`/column/${article.id}/`} className={styles.relatedCard}>
+                      {articleImage && (
+                        <div className={styles.relatedThumbnail}>
+                          <Image
+                            src={articleImage.url}
+                            alt={article.title}
+                            fill
+                            style={{ objectFit: "cover" }}
+                            sizes="120px"
+                          />
+                        </div>
+                      )}
+                      <p className={styles.relatedCardTitle}>{article.title}</p>
+                    </Link>
+                  </div>
+                )}
+              </div>
+            );
           })
         ) : (
           <div
