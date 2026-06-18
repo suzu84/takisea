@@ -57,7 +57,7 @@ export type Column = {
   category1?: Category[];
   blocks?: Block[];
   add?: Block[];
-  publishedAt: string;
+  publishedAt?: string;
   updatedAt: string;
 };
 
