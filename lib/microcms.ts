@@ -54,6 +54,7 @@ export type Column = {
     width: number;
     height: number;
   };
+  description?: string;
   readTxt?: string;
   category1?: Category[];
   blocks?: Block[];
