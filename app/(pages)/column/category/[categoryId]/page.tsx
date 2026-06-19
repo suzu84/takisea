@@ -11,6 +11,11 @@ type Props = {
   params: Promise<{ categoryId: string }>;
 };
 
+export async function generateStaticParams() {
+  const categories = await getCategories();
+  return categories.map((cat) => ({ categoryId: cat.id }));
+}
+
 async function getCategoryData(categoryId: string) {
   if (!client) return { columns: null, category: null };
   try {
