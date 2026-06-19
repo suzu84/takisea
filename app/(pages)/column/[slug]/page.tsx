@@ -15,6 +15,19 @@ type Props = {
   searchParams: Promise<{ draftKey?: string }>;
 };
 
+export async function generateStaticParams() {
+  if (!client) return [];
+  try {
+    const data = await client.getList<Column>({
+      endpoint: "column",
+      queries: { limit: 100, fields: "id" },
+    });
+    return data.contents.map((post) => ({ slug: post.id }));
+  } catch {
+    return [];
+  }
+}
+
 async function getColumn(slug: string, draftKey?: string): Promise<Column | null> {
   try {
     if (!client) return null;
