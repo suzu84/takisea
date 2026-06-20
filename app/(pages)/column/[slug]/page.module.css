@@ -225,15 +225,35 @@
 
 .postContent :global(table) {
   margin: 20px 0;
-  font-size: 1.4rem;
   border-collapse: collapse;
   width: 100%;
 }
 
-.postContent :global(th),
-.postContent :global(td) {
+.postContent :global(thead) {
+  border-bottom: 3px solid #323232;
+}
+
+.postContent :global(th) {
+  border: 1px solid #323232;
   padding: 8px 12px;
-  border: 1px solid #ddd;
+  font-size: 14px;
+  font-weight: bold;
+  color: #323232;
+  width: auto;
+  text-align: left;
+  line-height: 1.5;
+  vertical-align: middle;
+}
+
+.postContent :global(td) {
+  border: 1px solid #323232;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #323232;
+  width: auto;
+  text-align: left;
+  line-height: 1.5;
+  vertical-align: middle;
 }
 
 /* 著者（本文下） */
@@ -426,6 +446,30 @@
 
   .postContent :global(p) {
     margin-bottom: 14px;
+  }
+
+  .postContent :global(table) {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 15px 0;
+  }
+
+  .postContent :global(th),
+  .postContent :global(td) {
+    padding: 8px 12px;
+    font-size: 12px;
+    border: 1px solid #ddd;
+    min-width: 120px;
+  }
+
+  .postContent :global(tr th:first-child),
+  .postContent :global(tr td:first-child) {
+    position: sticky;
+    left: 0;
+    background-color: #fff;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
   }
 
   .author {
