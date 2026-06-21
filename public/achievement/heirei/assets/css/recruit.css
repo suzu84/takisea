@@ -1,0 +1,334 @@
+@charset "UTF-8";
+
+.mainVisual-2 {
+  background-image: url(../images/recruit.jpg);
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.mainVisual-2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(50, 50, 50, .3);
+}
+
+/*==========================
+comment
+==========================*/
+.topic {
+  text-align: center;
+  padding: 100px 0;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.topic__h2 {
+  font-size: 28px;
+  font-family: "Sawarabi Mincho", serif;
+  color: #3f83d1;
+  margin-bottom: 30px;
+}
+
+.topic p {
+  margin-bottom: 10px;
+}
+
+.topic .detailed__link {
+  padding: 10px 0;
+}
+
+@media screen and (max-width:769px) {
+  .topic {
+    text-align: center;
+    padding: 75px 2.6%;
+  }
+  .topic__h2 {
+    font-size: 25px;
+  }
+}
+
+/*==========================
+job
+==========================*/
+#job {
+  padding: 0 0 75px;
+  max-width: 1160px;
+  text-align: center;
+  margin: 0 auto;
+}
+.job__h2 {
+  position: relative;
+  text-align: center;
+  font-size: 24px;
+  font-family: "Sawarabi Mincho", serif;
+  color: #3f83d1;
+}
+.job__h2::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 3px;
+  background-color: #3f83d1;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.job__list {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.job__item {
+  border: 1px solid #3f83d1;  
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 50px;
+  position: relative;
+}
+.job__item::after {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 10px;
+  height: 10px;
+  top: 55%;
+  right: 30px;
+  margin-top: -3px;
+  border-bottom: 1px solid #3f83d1;
+  border-right: 1px solid #3f83d1;
+  transform: rotate(-45deg) translateY(-50%);
+  transform-origin: 50% 0;
+}
+
+.job__item:hover::after {
+  border-bottom: 1px solid #fff;
+  border-right: 1px solid #fff;
+}
+
+.job__item a {
+  display: block;
+  padding: 30px 120px;
+  font-size: 16px;
+  color: #3f83d1;
+}
+
+.job__item a:hover {
+  background: #3f83d1;
+  color: #fff;
+  border: unset;
+  opacity: 1;
+}
+
+@media screen and (max-width:769px) {
+  #job {
+    padding: 0 2.6% 75px;
+  }
+  .job__h2 {
+    font-size: 22px;
+  }
+  .job__list {
+    display: block;
+  }
+  .job__item {
+    width: 270px;
+    margin: 50px auto 0px;
+  }
+  .job__item a {
+    padding: 20px 20px;
+    font-size: 14px
+  }
+}
+
+/*==========================
+information
+==========================*/
+#information {
+  padding: 0 0 100px;
+  max-width: 1160px;
+  text-align: center;
+  margin: 0 auto;
+}
+.information__h2 {
+  position: relative;
+  text-align: center;
+  font-size: 24px;
+  font-family: "Sawarabi Mincho", serif;
+  color: #3f83d1;
+}
+.information__h2::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 3px;
+  background-color: #3f83d1;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.information__list {
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+@media screen and (max-width:769px) {
+  #information {
+    padding: 0 2.6% 75px;
+  }
+  .information__h2 {
+    font-size: 22px;
+  }
+  .information__list {
+    padding: 0 40px;
+    display: block;
+  }
+  .information__item {
+    margin-bottom: 15px;
+  }
+}
+
+/*==========================
+welfare
+==========================*/
+
+#welfare {
+  padding: 0 0 100px;
+  max-width: 1160px;
+  text-align: center;
+  margin: 0 auto;
+}
+.welfare__h2 {
+  position: relative;
+  text-align: center;
+  font-size: 24px;
+  font-family: "Sawarabi Mincho", serif;
+  color: #3f83d1;
+}
+.welfare__h2::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 3px;
+  background-color: #3f83d1;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.welfare__list {
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+.welfare__item {
+  border-radius: 5px;
+  border: 1px solid #323232;
+  margin: 0 15px;
+}
+
+#welfare .detailed__link {
+  padding: 15px 55px;
+}
+
+.welfare__item p {
+  margin-bottom: 15px;
+  padding: 5px;
+}
+
+@media screen and (max-width:769px) {
+  #welfare {
+    padding: 0 2.6% 75px;
+  }
+  .welfare__h2 {
+    font-size: 22px;
+  }
+  .welfare__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+  }
+  .welfare__item {
+    margin: 10px;
+  }
+  #welfare .detailed__link {
+    padding: 10px 10px;
+  }
+}
+
+/*==========================
+interview
+==========================*/
+#interview {
+  padding: 0 0 100px;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+.interview__h2 {
+  position: relative;
+  text-align: center;
+  font-size: 24px;
+  font-family: "Sawarabi Mincho", serif;
+  color: #3f83d1;
+  margin-bottom: 50px;
+}
+.interview__h2::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 3px;
+  background-color: #3f83d1;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.interview__member {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+.interview__member:nth-child(odd) {
+  flex-direction: row-reverse;
+}
+.interview__img {
+  width: 40%;
+}
+.interview__img img {
+  margin-bottom: 10px;
+}
+.interview__txt {
+  width: 55%;
+}
+.interview__txt p {
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width:769px) {
+  #interview {
+    padding: 0 2.6% 75px;
+  }
+
+  .interview__h2 {
+    font-size: 22px;
+  }
+
+  .interview__member {
+    display: block;
+  }
+  .interview__img,
+  .interview__txt {
+    width: 100%;
+  }
+  .interview__img img {
+    margin-bottom: 5px;
+  }
+  .interview__txt {
+    margin-top: 15px;
+  }
+}

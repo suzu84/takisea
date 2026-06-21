@@ -1,0 +1,406 @@
+@charset "UTF-8";
+
+/*==========================
+common
+==========================*/
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Noto Serif JP", serif;
+  font-style: normal;
+  color: #323232;
+  background: #fff;
+  line-height: 1.5;
+  letter-spacing: 0.2rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+p {
+  font-size: 1.6rem;
+  line-height: 1.7;
+  color: #fff;
+}
+
+main {
+  background: #1a1a1a;
+}
+
+.vacancy {
+  color: #fff;
+  background: #C1B16D;
+  font-size: 1.4rem;
+  transition: 0.5s;
+}
+
+.contact {
+  color: #fff;
+  background: #283A65;
+  font-size: 1.4rem;
+  transition: 0.5s;
+}
+
+.vacancy:hover,
+.contact:hover {
+  opacity: .7;
+}
+
+.mainVisual::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(24, 30, 47, .3);
+}
+
+.mainVisual__h2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+}
+
+.annotation p {
+  font-size: 1.2rem;
+}
+
+.spOnly {
+  display: none;
+}
+
+@media screen and (max-width:769px) {
+  p {
+    font-size: 1.4rem;
+  }
+  .annotation p {
+    font-size: 1rem;
+  }
+  .mainVisual__h2 {
+    font-size: 3rem;
+  }
+  .spOnly {
+    display: block;
+  }
+}
+
+/*==========================
+header
+==========================*/
+.header {
+  background: #fff;
+  width: 100%;
+  position: fixed;
+  z-index: 99;
+}
+
+.header.top {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.header__upper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+}
+
+.header__topic {
+  font-size: 2.5rem;
+}
+
+.header__btn {
+  display: flex;
+}
+
+.header__btn .vacancy,
+.header__btn .contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 50px;
+  margin: 0 10px;
+}
+
+.nav__menuSp {
+  display: none;
+}
+
+.nav__menu-sp {
+  display: none;
+}
+
+.nav__menu {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.nav__list {
+  display: flex;
+  font-size: 1.6rem;
+}
+
+.nav__item {
+  width: 200px;
+  padding: 10px 0;
+  position: relative;
+}
+
+.nav__item a {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transition: .5s;
+}
+
+.nav__item a:hover {
+  opacity: .7;
+}
+
+.nav__item .current {
+  position: relative;
+}
+
+.nav__item .current::after {
+  position: absolute;
+  content: "";
+  width: 50px;
+  border: 1px solid #283A65;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -5px;
+}
+
+nav__menu-sp {
+  display: none;
+}
+
+@media screen and (max-width:769px) {
+  .nav__menuSp {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .header__upper {
+    display: none;
+  }
+
+  .header__topic {
+    font-size: 2.2rem;
+  }
+
+  .nav__menu-sp {
+    margin-top: 69px;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transform: translateY(-130%);
+    transition: transform 0.4s;
+    padding: 30px;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .nav__menu-sp.active {
+    transform: translateY(0);
+  }
+
+  .nav__menu {
+    display: none;
+  }
+
+  .nav__hum {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+  }
+
+  /*ボタン内側*/
+  .nav__hum span {
+    display: inline-block;
+    transition: all .4s;
+    /*アニメーションの設定*/
+    position: absolute;
+    left: 14px;
+    height: 3px;
+    border-radius: 2px;
+    background: #1a1a1a;
+    width: 45%;
+  }
+
+  .nav__hum span:nth-of-type(1) {
+    top: 15px;
+  }
+
+  .nav__hum span:nth-of-type(2) {
+    top: 23px;
+  }
+
+  .nav__hum span:nth-of-type(3) {
+    top: 31px;
+  }
+
+  /*activeクラスが付与されると線が回転して×に*/
+
+  .nav__hum.active span:nth-of-type(1) {
+    top: 18px;
+    left: 18px;
+    transform: translateY(6px) rotate(-45deg);
+    width: 30%;
+  }
+
+  .nav__hum.active span:nth-of-type(2) {
+    opacity: 0;
+    /*真ん中の線は透過*/
+  }
+
+  .nav__hum.active span:nth-of-type(3) {
+    top: 30px;
+    left: 18px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 30%;
+  }
+
+  .nav__list-sp {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    font-size: 1.4rem;
+  }
+
+  .nav__item-sp {
+    text-align: center;
+  }
+
+  .nav__btnSp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+  }
+
+  .nav__btnSp .vacancy,
+  .nav__btnSp .contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 50px;
+    margin: 0 10px;
+  }
+
+  .nav__btnSp .contact {
+    margin-top: 20px;
+  }
+}
+
+/*==========================
+footer
+==========================*/
+
+.footer__txt p {
+  color: #2a2a2a;
+  font-size: 1.5rem;
+}
+
+.footer__txt p.footer__title {
+  font-size: 2.5rem;
+}
+
+.footer p span {
+  font-size: 2.3rem;
+}
+
+.footer__contents {
+  max-width: 1000px;
+  padding: 60px 70px 30px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__btn {
+  display: block;
+}
+
+.footer__btn .vacancy,
+.footer__btn .contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  height: 50px;
+  margin: 30px 10px;
+}
+
+.footer .copy {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #2a2a2a;
+}
+
+@media screen and (max-width:769px) {
+  .footer .footer__contents {
+    flex-direction: column-reverse;
+    padding: 40px 35px 15px;
+  }
+
+  .footer__txt {
+    text-align: center;
+  }
+
+  .footer__txt p.footer__title {
+    font-size: 2rem;
+  }
+}
+
+ /*==========================
+fadeIn
+==========================*/
+.fadeIn {
+  opacity: 0;
+  transform: translate(0px, 50px);
+  transition: 1s;
+}
+.fadeIn.animated {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.fadeIn_left {
+  opacity: 0;
+  transform: translate(-200px, 0px);
+  transition: 1s;
+}
+.fadeIn_left.animated {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.fadeIn_right {
+  opacity: 0;
+  transform: translate(200px, 0px);
+  transition: 1s;
+}
+.fadeIn_right.animated {
+  opacity: 1;
+  transform: translate(0, 0);
+}

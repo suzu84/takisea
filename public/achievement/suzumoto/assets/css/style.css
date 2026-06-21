@@ -1,0 +1,936 @@
+@charset "UTF-8";
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: "Noto Serif JP", serif;
+  font-style: normal;
+  color: #fff;
+  background: #fff;
+  line-height: 1.7;
+  letter-spacing: normal;
+}
+p {
+  font-size: 1.8rem;
+}
+img {
+  width: 100%;
+}
+.header {
+  background: #0C213C;
+}
+.header__pc {
+  margin: 0 auto;
+  max-width: 1400px;
+  display: flex;
+  justify-content: space-between;
+}
+.header__company {
+  display: flex;
+  align-items: center;
+}
+.header__company img {
+  display: block;
+  width: 45px;
+  margin: 0 10px;
+}
+.header__company h1 {
+  font-size: 3.4rem;
+}
+.header__company .h1__name {
+  font-size: 5rem;
+}
+.header__contact {
+  display: flex;
+  align-items: baseline;
+}
+.header__contact .header__tel {
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+}
+.header__contact .header__tel p {
+  font-size: 4.8rem;
+}
+.header__contact .header__tel img {
+  display: block;
+  width: 40px;
+  margin: 0 10px;
+}
+.header__contact .header__time {
+  font-size: 2rem;
+}
+.mv {
+  height: 750px;
+  background-image: url(/achievement/suzumoto/assets/images/mv.jpg);
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.mv__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 70px 0 100px;
+}
+.mv__left img {
+  width: 370px;
+  display: block;
+}
+.mv__title p {
+  font-size: 4.8rem;
+  font-weight: bold;
+  color: #0C213C;
+  text-shadow: 5px 5px 12.9px #fff;
+}
+.mv__title .titleEmphasis {
+  font-size: 9.6rem;
+  line-height: 1.2;
+}
+.mv__right {
+  position: relative;
+  width: 450px;
+  height: 420px;
+  margin: 0 auto;
+  background-color: transparent;
+}
+
+/* 共通の丸スタイル */
+.circle {
+  width: 200px;
+  height: 200px;
+  background-color: #0C213C;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  font-size: 3.4rem;
+  font-weight: bold;
+  text-align: center;
+}
+.circle p {
+  font-size: 2.8rem;
+}
+
+.circle1 {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.circle2 {
+  bottom: 0;
+  right: 0;
+}
+
+.circle3 {
+  bottom: 0;
+  left: 0;
+}
+.contactBtn {
+  background: #0C213C;
+  color: #fff;
+  max-width: 420px;
+  text-align: center;
+  font-size: 3.6rem;
+  margin: 0 auto;
+  position: relative;
+}
+.contactBtn a {
+  padding: 10px 0;
+  display: block;
+  width: 100%;
+  color: #fff;
+  position: relative;
+  /* overflow: hidden; */
+  transition: color 0.4s ease;
+}
+
+@media screen and (min-width:770px) {
+  /* 背景スライド（左から） */
+  .contactBtn a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: #fff;
+    border: 1px solid #0C213C;
+    z-index: 1;
+    transition: width 0.4s ease;
+  }
+  
+  /* 矢印アイコン */
+  .contactBtn a::after {
+    content: url("/achievement/suzumoto/assets/images/arrow.png");
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 5%;
+    z-index: 2; /* ← 背景より上に表示 */
+  }
+  
+  /* ホバー時に背景がスライド */
+  .contactBtn a:hover::before {
+    width: 100%;
+  }
+  
+  /* テキスト */
+  .contactBtn a span {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    transition: color 0.4s ease;
+  }
+  
+  /* ホバー時に文字色反転 */
+  .contactBtn a:hover span {
+    color: #0C213C;
+  }
+}
+
+#worries {
+  background: #0C213C;
+  color: #fff;
+  position: relative;
+}
+#worries::after {
+  content: url("/achievement/suzumoto/assets/images/triangle.jpg");
+  position: absolute;
+  bottom: -49px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.worries__content {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 115px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.worries__txt {
+  width: 50%;
+}
+.worries__h2 {
+font-size: 4.8rem;
+font-weight: 500;
+margin-bottom: 35px;
+}
+.worries__list li {
+margin-left: 30px;
+position: relative;
+font-size: 1.8rem;
+padding: 10px 0;
+}
+.worries__list li::before {
+  display: inline-block;
+  content: url("/achievement/suzumoto/assets/images/checkmark.png");
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: -8%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.worries__img {
+  width: 40%;
+}
+#solution {
+  color: #0C213C;
+  padding: 100px 100px;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.solution__h2 {
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.solution__read {
+  font-size: 3.2rem;
+  text-align: center;
+  margin-bottom: 100px;
+}
+.solution__item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+.solution__item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+.solution__txt,
+.solution__img.pc {
+  width: 47.5%;
+}
+.solution__img.pc img {
+  width: 100%;
+}
+.solution__img.sp {
+  display: none;
+}
+.solution__h3 {
+  font-size: 3.6rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+#reason {
+  background: #EFF6FF;
+  padding:120px 0;
+}
+.reason__h2 {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: bold;
+  color: #0C213C;
+  margin-bottom: 90px;
+  position: relative;
+}
+.reason__h2::after {
+  position: absolute;
+  content: "";
+  width: 100px;
+  border: 2px solid #0C213C;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+}
+.reason__content {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.reason__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px 100px;
+}
+.reason__item {
+  background: #0C213C;
+}
+.reason__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0 10px;
+}
+.reason__title p {
+  font-size: 2.8rem;
+  opacity: .5;
+}
+.reason__title p span {
+  font-size: 4.8rem;
+}
+.reason__title h3 {
+  font-size: 2.8rem;
+}
+.reason__txt {
+  padding: 10px;
+  font-size: 1.8rem;
+}
+#fllow {
+  margin: 120px auto;
+}
+.fllow__h2 {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: bold;
+  color: #0C213C;
+  margin-bottom: 90px;
+  position: relative;
+}
+.fllow__h2::after {
+  position: absolute;
+  content: "";
+  width: 100px;
+  border: 2px solid #0C213C;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+}
+.fllow__item{
+  display: flex;
+  max-width: 800px;
+  border: 2px solid #13213C;
+  margin: 0 auto 40px;
+  font-size: 3rem;
+}
+.step-left {
+  width: 30%;
+  background-color: #13213C;
+  color: white;
+  padding: 10px 20px;
+  position: relative;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.step-left::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -15px;
+  width: 0;
+  height: 0;
+  border-top: 35px solid transparent;
+  border-bottom: 35px solid transparent;
+  border-left: 15px solid #13213C;
+}
+
+.step-right {
+  width: 70%;
+  padding: 10px 30px;
+  background-color: white;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fllow__txt {
+  color: #323232;
+  margin: 50px 0;
+  font-size: 2.4rem;
+  text-align: center;
+}
+
+.banner-pc {
+  max-width: 700px;
+  margin: 75px auto;
+}
+
+.banner-pc a:hover {
+  opacity: .7;
+}
+.banner-sp {
+  display: none;
+}
+#price {
+  background: #EFF6FF;
+  padding:120px 0;
+  color: #323232;
+}
+.price__h2 {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: bold;
+  color: #0C213C;
+  margin-bottom: 90px;
+  position: relative;
+}
+.price__h2::after {
+  position: absolute;
+  content: "";
+  width: 100px;
+  border: 2px solid #0C213C;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+}
+.price__content {
+  max-width: 1050px;
+  margin: 0 auto;
+}
+.price__content p {
+  text-align: center;
+}
+.price__list {
+  margin: 50px 0;
+}
+.price__list table {
+  max-width: 1050px;
+  margin: 0 auto 5px;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #888;
+  padding: 12px;
+  text-align: center;
+}
+th {
+  color: white;
+  font-size: 2.4rem;
+}
+td {
+  font-size: 2rem;
+}
+th.standard {
+  background-color: #92BEF6;
+  width: 350px;
+}
+th.business {
+  background-color: #2869BC;
+  width: 350px;
+}
+th.premium {
+  background-color: #D7C435;
+  width: 350px;
+}
+td.standard {
+  background-color: #D5E7FE;
+}
+td.business {
+  background-color: #C4D6ED;
+}
+td.premium {
+  background-color: #ECE5AE;
+}
+td strong {
+  font-size: 3rem;
+}
+#question {
+  margin: 120px auto;
+  color: #323232;
+}
+.question__h2 {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: bold;
+  color: #0C213C;
+  margin-bottom: 90px;
+  position: relative;
+}
+.question__h2::after {
+  position: absolute;
+  content: "";
+  width: 100px;
+  border: 2px solid #0C213C;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+}
+.question__list {
+  max-width: 900px;
+  margin: 50px auto 75px;
+}
+.question__list dt,
+.question__list dd {
+  padding: 10px 10px 10px 50px;
+  position: relative;
+}
+.question__list dt {
+  font-size: 2.2rem;
+}
+.question__list dd {
+  font-size: 1.8rem;
+}
+.question__list dt::before {
+  position: absolute;
+  content: "Q";
+  color: #FF0004;
+  font-size: 2.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 1.5%;
+  padding: 10px 0;
+}
+.question__list dd::before {
+  position: absolute;
+  content: "A";
+  color: #0055FF;
+  font-size: 2.2rem;
+  font-weight: bold;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 1.5%;
+  padding: 10px 0;
+  line-height: 1.5;
+}
+.question__list div {
+  border-top: 2px solid #323232;
+  padding: 20px 0;
+}
+.question__list div:last-child {
+  border-bottom: 2px solid #323232;
+}
+@media screen and (max-width:769px) {
+  p {
+    font-size: 1.6rem;
+  }
+  .contactBtn {
+    width: 350px;
+    font-size: 2.8rem;
+  }
+  .contactBtn a::after {
+    content: url("/achievement/suzumoto/assets/images/arrow.png");
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 5%;
+    z-index: 2; /* ← 背景より上に表示 */
+  }
+  .header__contact {
+    display: none;
+  }
+  .header__company img {
+    display: block;
+    width: 28px;
+    margin: 0 10px;
+  }
+  .header__company h1 {
+    font-size: 2.4rem;
+  }
+  .header__company .h1__name {
+    font-size: 3.2rem;
+  }
+  .mv {
+    height: 700px;
+    background-image: url(/achievement/suzumoto/assets/images/mv.jpg);
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .mv__content {
+    display: block;
+    margin: 0 auto;
+    padding: 20px 0 10px;
+  }
+  .mv__left img {
+    width: 280px;
+    margin: 0 auto;
+  }
+  .mv__title p {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #0C213C;
+    text-shadow: 5px 5px 12.9px #fff;
+    text-align: center;
+  }
+  .mv__title .titleEmphasis {
+    font-size: 4rem;
+    line-height: 1.2;
+  }
+  .mv__right {
+    position: relative;
+    width: 330px;
+    height: 310px;
+    margin: 15px auto 0;
+    background-color: transparent;
+  }
+  .circle {
+    width: 140px;
+    height: 140px;
+    background-color: #0C213C;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    font-size: 3.4rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  .circle p {
+    font-size: 2rem;
+  }
+  .circle1 {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .circle2 {
+    bottom: 10%;
+    right: 0;
+  }
+  .circle3 {
+    bottom: 10%;
+    left: 0;
+  }
+  #worries::after {
+    bottom: -48px;
+  }
+  .worries__content {
+    padding: 50px 2.6%;
+    display: block
+  }
+  .worries__txt {
+    width: 100%;
+    text-align: center;
+  }
+  .worries__h2 {
+  font-size: 3rem;
+  font-weight: 500;
+  margin-bottom: 25px;
+  }
+  .worries__list li {
+    text-align: start;
+  margin-left: 30px;
+  position: relative;
+  font-size: 1.6rem;
+  padding: 10px 0;
+  }
+  .worries__list li::before {
+    display: inline-block;
+    content: "";
+    background-image: url(/achievement/suzumoto/assets/images/checkmark.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 25px;  /* お好みのサイズに変更 */
+    height: 25px; /* お好みのサイズに変更 */
+    position: absolute;
+    left: -8%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .worries__img {
+    display: none;
+  }
+  #solution {
+    color: #0C213C;
+    padding: 50px 2.6%;
+  }
+  .solution__h2 {
+    font-size: 2.8rem;
+    margin-bottom: 5px;
+  }
+  .solution__read {
+    font-size: 2.4rem;
+    text-align: center;
+    margin-bottom: 75px;
+  }
+  .solution__item {
+    display: block;
+    justify-content: space-between;
+    margin-bottom: 60px;
+  }
+  .solution__txt,
+  .solution__img.sp {
+    display: block;
+    width: 100%;
+  }
+  .solution__img.sp img {
+    width: 100%;
+  }
+  .solution__img.pc{
+    display: none;
+  }
+  .solution__h3 {
+    font-size: 2.6rem;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  .solution__txt p {
+    margin-top: 10px;
+  }
+  #reason {
+    background: #EFF6FF;
+    padding: 75px 2.6%;
+  }
+  .reason__h2 {
+    font-size: 2.8rem;
+    margin-bottom: 60px;
+  }
+  .reason__h2::after {
+    width: 80px;
+    border: 1px solid #0C213C;
+  }
+  .reason__list {
+    display: block;
+  }
+  .reason__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0 10px;
+  }
+  .reason__item {
+    margin-bottom: 20px;
+  }
+  .reason__title p {
+    font-size: 2rem;
+    opacity: .5;
+  }
+  .reason__title p span {
+    font-size: 3.2rem;
+  }
+  .reason__title h3 {
+    font-size: 2rem;
+  }
+  .reason__txt {
+    padding: 10px;
+    font-size: 1.6rem;
+  }
+  #fllow {
+    margin: 75px 2.6%;
+  }
+  .fllow__h2 {
+    font-size: 2.8rem;
+    margin-bottom: 60px;
+  }
+  .fllow__h2::after {
+    width: 80px;
+    border: 1px solid #0C213C;
+  }
+  .fllow__item{
+    margin: 0 auto 40px;
+    font-size: 2.2rem;
+  }
+  .step-left {
+    width: 30%;
+    background-color: #13213C;
+    color: white;
+    padding: 10px 20px;
+    position: relative;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+  
+  .step-left::after {
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+  }
+  
+  .step-right {
+    width: 70%;
+    padding: 10px 30px;
+    background-color: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .fllow__txt {
+    margin: 30px 0;
+    font-size: 2rem;
+  }
+  
+  .banner-pc {
+    display: none;
+  }
+  
+  .banner-sp {
+    display: block;
+    margin: 50px auto;
+  }
+
+  .banner-sp a:hover {
+    opacity: .7;
+  }
+
+  #price {
+    padding:75px 0;
+  }
+  .price__h2 {
+    font-size: 2.8rem;
+    margin-bottom: 60px;
+  }
+  .price__h2::after {
+    width: 80px;
+    border: 1px solid #0C213C;
+  }
+  .price__content {
+    max-width: 1050px;
+    margin: 0 auto;
+  }
+  .price__content p {
+    text-align: center;
+  }
+  .price__list {
+    margin: 30px 0;
+    overflow-x: scroll;
+  }
+  .price__list table {
+    width: 900px;
+    margin: 0 auto 5px;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid #888;
+    padding: 12px;
+    text-align: center;
+  }
+  th {
+    color: white;
+    font-size: 2.2rem;
+  }
+  td {
+    font-size: 1.8rem;
+  }
+  th.standard {
+    background-color: #92BEF6;
+    width: 300px;
+  }
+  th.business {
+    background-color: #2869BC;
+    width: 300px;
+  }
+  th.premium {
+    background-color: #D7C435;
+    width: 300px;
+  }
+  td.standard {
+    background-color: #D5E7FE;
+  }
+  td.business {
+    background-color: #C4D6ED;
+  }
+  td.premium {
+    background-color: #ECE5AE;
+  }
+  td strong {
+    font-size: 2.6rem;
+  }
+  #question {
+    margin: 75px auto;
+  }
+  .question__h2 {
+    font-size: 2.8rem;
+    margin-bottom: 60px;
+  }
+  .question__h2::after {
+    width: 80px;
+    border: 1px solid #0C213C;
+  }
+  .question__list {
+    max-width: 900px;
+    margin: 30px 2.6% 50px;
+  }
+  .question__list dt,
+  .question__list dd {
+    padding: 5px 5px 5px 40px;
+    position: relative;
+  }
+  .question__list dt {
+    font-size: 2rem;
+  }
+  .question__list dd {
+    font-size: 1.6rem;
+  }
+  .question__list dt::before {
+    position: absolute;
+    content: "Q";
+    color: #FF0004;
+    font-size: 2.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1.5%;
+    padding: 10px 0;
+  }
+  .question__list dd::before {
+    position: absolute;
+    content: "A";
+    color: #0055FF;
+    font-size: 2.2rem;
+    font-weight: bold;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1.5%;
+    padding: 10px 0;
+    line-height: 1.5;
+  }
+  .question__list div {
+    border-top: 2px solid #323232;
+    padding: 20px 0;
+  }
+  .question__list div:last-child {
+    border-bottom: 2px solid #323232;
+  }
+}
