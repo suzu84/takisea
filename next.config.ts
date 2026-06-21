@@ -9,18 +9,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  async rewrites() {
-    return [
-      {
-        source: "/achievement/:path*/",
-        destination: "/achievement/:path*/index.html",
-      },
-      {
-        source: "/achievement/:path*",
-        destination: "/achievement/:path*/index.html",
-      },
-    ];
-  },
 };
 
 export default nextConfig;
