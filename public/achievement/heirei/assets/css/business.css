@@ -1,0 +1,145 @@
+@charset "UTF-8";
+
+.mainVisual-2 {
+  background-image: url(../images/business/mv_business.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.mainVisual-2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(50, 50, 50, .3);
+}
+
+.read__topic {
+  margin: 100px 140px 50px 140px;
+  text-align: center;
+}
+
+#rent,
+#buy,
+#management {
+  padding: 75px 0;
+  display: flex;
+  align-items: center;
+  /* max-width: 1160px; */
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden; 
+}
+
+#buy {
+  border-top: 1px solid #323232;
+  border-bottom: 1px solid #323232;
+  flex-direction: row-reverse;
+}
+
+
+
+.business__topics {
+  text-align: center;
+  width: calc(100% - 1000px)
+}
+
+.business__h2 {
+  font-size: 24px;
+  font-family: "Sawarabi Mincho", serif;
+}
+
+.business__topics img {
+  width: 50px;
+}
+
+.business__list {
+  display: flex;
+  justify-content: space-evenly;
+  width: 900px;
+}
+
+.business__item {
+  width: 400px;
+}
+
+.business__content {
+  padding: 10px;
+}
+
+.business__subTitle {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.business__link {
+  padding: 10px 0px;
+  margin: 0 auto;
+  text-align: right;
+  font-size: 16px;
+  color: #323232;
+  position: relative;
+}
+
+.business__link span {
+  display: inline-block;
+  vertical-align: middle;
+  color: #333;
+  line-height: 1;
+  position: relative;
+  width: 0.8em;
+  height: 0.8em;
+  border: 0.075em solid #323232;
+  border-radius: 50%;
+  box-sizing: content-box;
+  margin-left: 5px;
+}
+
+.business__link span::before {
+  content: '';
+  color: #fff;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 0.18em 0.31177em;
+  border-left-color: #323232;
+  border-right: 0;
+  transform: translateX(15%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+@media screen and (max-width:769px) {
+  .read__topic {
+    margin: 50px 2.6% 30px 2.6%;
+    text-align: center;
+  }
+
+  #rent,
+  #buy,
+  #management {
+    padding: 50px 2.6%;
+    display: block;
+  }
+  .business__topics {
+    text-align: center;
+    width: 100%;
+  }
+  .business__list {
+    display: block;
+    width: 100%;
+  }
+  .business__item {
+    width: 100%;
+    margin: 15px 0;
+    display: block;
+  }
+}

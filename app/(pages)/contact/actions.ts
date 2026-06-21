@@ -45,7 +45,7 @@ export async function submitContact(
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
-      from: "onboarding@resend.dev",
+      from: "noreply@takisea.com",
       to: process.env.CONTACT_FORM_TO!,
       subject: `【お問い合わせ】${name}様よりお問い合わせが届きました`,
       text: `お名前: ${name}\nメールアドレス: ${email}\n\n${message}`,
