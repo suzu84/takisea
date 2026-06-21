@@ -235,6 +235,7 @@
 
 .postContent :global(th) {
   border: 1px solid #323232;
+  border-bottom: 3px solid #323232;
   padding: 8px 12px;
   font-size: 14px;
   font-weight: bold;
@@ -254,6 +255,18 @@
   text-align: left;
   line-height: 1.5;
   vertical-align: middle;
+}
+
+.postContent :global(td strong),
+.postContent :global(th strong) {
+  font-size: inherit;
+  font-weight: bold;
+}
+
+.postContent :global(.js-scrollable) {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 20px 0;
 }
 
 /* 著者（本文下） */
@@ -449,10 +462,7 @@
   }
 
   .postContent :global(table) {
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin: 15px 0;
+    min-width: 500px;
   }
 
   .postContent :global(th),

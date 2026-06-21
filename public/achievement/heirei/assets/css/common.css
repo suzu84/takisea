@@ -1,0 +1,467 @@
+@charset "UTF-8";
+
+/*==========================
+common
+==========================*/
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Noto Sans JP", serif;
+  font-style: normal;
+  color: #323232;
+  background: #fff;
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+p {
+  font-size: 1.6rem;
+  line-height: 1.7;
+}
+
+a:hover {
+  opacity: .7;
+  cursor: pointer;
+}
+
+.btnBlue {
+  width: 280px;
+  border-radius: 5px;
+  background-color: #3F83D1;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  font-size: 18px;
+  margin: 0 auto;
+}
+.btnBlue:hover {
+  opacity: 1;
+  background-color: transparent;
+  border: 2px solid #3F83D1;
+  color: #3F83D1;
+}
+.btnClear {
+  width: 280px;
+  border-radius: 5px;
+  border: 2px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  font-size: 18px;
+  margin: 0 auto;
+}
+.btnClear:hover {
+  opacity: 1;
+  background-color: #fff;
+  border: unset;
+  color: #3F83D1;
+}
+.btnWhite {
+  width: 280px;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #3F83D1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  font-size: 18px;
+  margin: 20px auto;
+  border: 1px solid #3F83D1;
+}
+.btnWhite:hover {
+  opacity: 1;
+  background-color: #3F83D1;
+  color: #fff;
+  border: unset;
+}
+.detailed__link {
+  padding: 10px 30px;
+  margin: 0 auto;
+  text-align: right;
+  font-size: 16px;
+  color: #3F83D1;
+  position: relative;
+}
+.detailed__link span {
+  display: inline-block;
+  vertical-align: middle;
+  color: #333;
+  line-height: 1;
+  position: relative;
+  width: 0.8em;
+  height: 0.8em;
+  border: 0.075em solid #3f83d1;
+  border-radius: 50%;
+  box-sizing: content-box;
+  margin-left: 5px;
+}
+.detailed__link span::before {
+  content: '';
+  color: #fff;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 0.18em 0.31177em;
+  border-left-color: #3f83d1;
+  border-right: 0;
+  transform: translateX(15%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.mainVisual-2{
+  width: 100%;
+  height: 250px;
+  position: relative;
+}
+.mainVisual-2__h1 {
+  font-size: 40px;
+  font-family: "Sawarabi Mincho", serif;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+.main {
+  margin-top: 75px;
+}
+@media screen and (max-width:769px) {
+  .btnBlue {
+    width: 250px;
+    font-size: 16px;
+  }
+  p {
+    font-size: 1.4rem;
+  }
+  .mainVisual-2{
+    height: 200px;
+  }
+  .mainVisual-2__h1 {
+    font-size: 35px;
+  }
+}
+/*==========================
+header
+==========================*/
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
+  padding-left: 20px;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  background: #fff;
+  width: 100%;
+}
+
+.header .header__topic {
+  max-width: 240px;
+}
+
+.header .nav {
+  height: 100%;
+}
+
+.header .nav .nav__menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.header .nav .nav__list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  z-index: 98;
+}
+
+.header .nav .nav__list .nav__item {
+  font-size: 1.6rem;
+  padding: 0 15px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.header .nav .nav__list .nav__item:last-child {
+  padding: 0 0 0 15px;
+} 
+
+.header .nav .nav__contact {
+  height: 100%;
+}
+
+.header .nav .nav__contact a {
+  background-color: #3F83D1;
+  color: #fff;
+  font-size: 1.6rem;
+  padding: 0 15px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width:769px) {
+  .nav {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+  }
+  .header__topic.pc {
+    display: none;
+  }
+  .header__topic.sp,
+  .nav__menu {
+    display: block;
+  }
+  .header .nav .nav__list {
+    display: block;
+    background:rgba(255,255,255,0.9);
+  }
+  
+  .header .nav .nav__list .nav__item {
+    height: unset;
+    text-align: center;
+  }
+  .header .nav .nav__list .nav__item {
+    display: block;
+    margin-bottom: 20px;
+  }
+  .nav__list {
+    background: #fff;
+    width: 100%;
+    margin-top: 70px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    transform: scale(0, 0);
+    transition: transform 0.4s;
+    padding: 30px;
+    display: inline-block;
+  }
+  .nav__list.active {
+    transform: scale(1, 1);
+  }
+  .nav_item {
+    font-size: 16px;
+    color: #fff;
+    padding: 10px;
+    border-bottom: 1px solid #fff;
+    margin-right: 0;
+    margin-top: 10px;
+    position: relative;
+  }
+  .nav_item::after {
+    display: inline-block;
+    content: "";
+    background-image: url(../images/navArrow_sp.png);
+    background-size: contain;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+  }
+  .nav_item:nth-child(7),
+  .nav_item:nth-child(8) {
+    border-bottom: unset;
+    width: 250px;
+    margin: 0 auto;
+  }
+  .nav_item:nth-child(7)::after,
+  .nav_item:nth-child(8)::after {
+    display: none;
+  }
+  .nav__btnHeader.sp {
+    display: block;
+    background: #fff;
+    padding: 10px 15px;
+    font-size: 18px;
+    color: #28B472;
+    border-radius: 20px;
+    text-align: center;
+  }
+  .nav__btnHeader.pc {
+    display: none;
+  }
+  .nav__menuSp {
+    /*ボタン内側の基点となるためrelativeを指定。
+  追従するナビゲーションの場合はfixed＋top、rightといった位置をセットで指定*/
+    display: block;
+    position: relative;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+  }
+
+  /*ボタン内側*/
+  .nav__menuSp span {
+    display: inline-block;
+    transition: all .4s;
+    /*アニメーションの設定*/
+    position: absolute;
+    left: 14px;
+    height: 3px;
+    border-radius: 2px;
+    background: #1a1a1a;
+  }
+
+  .nav__menuSp span:nth-last-of-type(1) {
+    width: 45%;
+  }
+  .nav__menuSp span:nth-last-of-type(2) {
+    width: 75%;
+  }
+
+  .nav__menuSp span:nth-of-type(1) {
+    top: 20px;
+    left: -1px;
+  }
+
+  .nav__menuSp span:nth-of-type(2) {
+    top: 31px;
+  }
+
+  /*activeクラスが付与されると線が回転して×に*/
+
+  .nav__menuSp.active span:nth-of-type(1) {
+    top: 18px;
+    left: 18px;
+    transform: translateY(6px) rotate(-45deg);
+    width: 40%;
+  }
+
+
+  .nav__menuSp.active span:nth-of-type(2) {
+    top: 30px;
+    left: 18px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 40%;
+  }
+
+  .header .nav .nav__contact {
+      width: 230px;
+      border-radius: 5px;
+      background-color: #3F83D1;
+      color: #fff;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+      font-size: 18px;
+      margin: 0 auto;
+    }
+    .header .nav .nav__contact a {
+      width: 100%;
+      justify-content: center;
+      border-radius: 5px;
+    }
+  }
+
+/*==========================
+footer
+==========================*/
+footer{
+  background: #F2FAFC;
+}
+footer .footer__content{
+  padding: 60px 10% 30px;
+  background: #F2FAFC;
+  display: flex;
+  justify-content: space-between;
+}
+
+footer .footer__content .footer__topic {
+  max-width: 240px;
+}
+
+footer .footer__content .footer__nav {
+  padding: 10px;
+}
+
+footer .footer__content .footer__nav .footer__list {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 400px;
+  padding: 0 10px;
+  gap: 10px 30px;
+}
+
+footer .footer__content .footer__nav .footer__list .footer__item {
+  font-size: 15px;
+  width: 100px;
+  padding: 10px;
+}
+
+footer .footer__content .footer__contact {
+  background: #fff;
+  border-radius: 10px;
+  width: 400px;
+  padding: 30px 0;
+  text-align: center;
+}
+
+footer .footer__content .footer__contact .footer__txt {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+footer .footer__content .footer__contact .footet_deatil {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+footer .footer__content .footer__contact .footet_deatil span {
+  font-size: 16px;
+}
+
+footer .copy {
+  color: #323232;
+  text-align: center;
+  padding: 10px 0;
+}
+
+@media screen and (max-width:769px) {
+  footer .footer__content .footer__nav {
+    padding: 10px 10px 30px 10px;
+  }
+  footer .footer__content{
+    padding: 50px 2.6% 30px;
+    display: block;
+  }
+  footer .footer__content .footer__nav .footer__list {
+    gap: 5px 20px;
+  }
+  footer .copy {
+    font-size: 10px;
+  }
+}

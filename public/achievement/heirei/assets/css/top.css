@@ -1,0 +1,360 @@
+@charset "UTF-8";
+.main__mainVisual {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.main__mainVisual .main_slide {
+  height: 100vh;
+  width: 100%;
+  object-fit: cover;
+}
+.main__mainVisual::before {
+  content: "心地よい街と暮らしを";
+  font-family: "Sawarabi Mincho", serif;
+  font-size: 80px;
+  font-weight: bold;
+  width: 100%;
+  color: #fff;
+  position: absolute;
+  z-index: 95;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  filter: drop-shadow(5px 5px 10px #323232);
+}
+.topics {
+  background: #3F83D1;
+  text-align: center;
+  color: #fff;
+  padding: 85px 0;
+}
+.topics p{
+  margin-bottom: 45px;
+}
+@media screen and (max-width:769px) {
+  .main__mainVisual {
+    height: 500px;
+  }
+  .main__mainVisual .main_slide {
+    height: 500px;
+  }
+  .main__mainVisual::before {
+    font-size: 45px;
+    width: 70%;
+  }
+  .topics {
+    background: #3F83D1;
+    text-align: center;
+    color: #fff;
+    padding: 50px 2.6%;
+  }
+}
+/*==========================
+business
+==========================*/
+#business {
+  max-width: 1160px;
+  margin: 140px auto;
+}
+.business__h2 {
+  font-size: 70px;
+  font-family: "Sawarabi Mincho", serif;
+  color: #3F83D1;
+  display: block;
+  position: relative;
+}
+.business__h2::before {
+  content: "事業紹介";
+  font-family: "Sawarabi Mincho", serif;
+  color: #3F83D1;
+  font-size: 18px;
+  position: absolute;
+  top: -10px;
+}
+.business__list {
+  display: flex;
+  padding: 10px 30px;
+}
+.business__item {
+  width: 100%;
+  height: 450px;
+  object-fit: contain;
+}
+.bisiness_link {
+  height: 100%;
+  position: relative;
+  display: block;
+}
+.business__topics {
+  width: 100%;
+  height: 70px;
+  background: #3232;
+  position: absolute;
+}
+.business__subTitle {
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  font-size: 40px;
+}
+.business__item img {
+  height: 100%;
+  transition: all .5s;
+}
+.business__txt {
+  display: none;
+  width: 85%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%); 
+}
+.bisiness_link:hover img {
+  opacity: .3;
+  background: #fff;
+}
+.bisiness_link:hover .business__txt {
+  display: inline;
+  font-size: 18px;
+  position: absolute;
+  z-index: 99;
+  color: #323232;
+  opacity: 1;
+}
+@media screen and (max-width:769px) {
+  #business {
+    max-width: 100%;
+    margin: 75px 2.6%;
+  }
+  .business__h2 {
+    font-size: 55px;
+  }
+  .business__h2::before {
+    font-size: 16px;
+  }
+  .business__list {
+    display: block;
+    padding: 0;
+  }
+  .business__item {
+    height: 400px;
+    margin-bottom: 10px;
+  }
+  .business__txt {
+    display: block;
+    width: 100%;
+    top: 330px;
+  }
+  .business__item img {
+    height: 300px
+  }
+  .business__topics {
+    height: 60px;
+  }
+  .business__subTitle {
+    font-size: 30px;
+  }
+}
+/*==========================
+voice
+==========================*/
+#voice_top {
+  padding: 140px 0;
+  background-image: url(../images/background.jpg);
+  background-position: center;
+}
+.voice__h2 {
+  max-width: 1160px;
+  margin: 0 auto;
+  font-size: 70px;
+  font-family: "Sawarabi Mincho", serif;
+  color: #323232;
+  display: block;
+  position: relative;
+}
+.voice__h2::before {
+  content: "お客様の声";
+  font-family: "Sawarabi Mincho", serif;
+  color: #323232;
+  font-size: 18px;
+  position: absolute;
+  top: -10px;
+}
+.voice__list {
+  display: flex;
+  gap : 10px;
+  margin-bottom: 80px;
+}
+.voice__item {
+  transition: transform .5s;
+  margin: 0 10px;
+  border-bottom: 1px solid #323232;
+
+}
+.voice__item:hover {
+  transform: scale(1.04, 1.04);
+}
+.voice__txt {
+  padding: 15px 5px;
+}
+.voice__name {
+  padding: 5px 5px;
+  text-align: end;
+}
+.slick-prev {
+  left: 10px;
+  z-index: 90;
+  width: 30px;
+}
+.slick-next {
+  right: 10px;
+  z-index: 90;
+  width: 30px;
+}
+.slick-prev:before, .slick-next:before {
+  font-size: 30px;
+  line-height: 1;
+  opacity: .75;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+@media screen and (max-width:769px) {
+  .voice__h2 {
+    font-size: 55px;
+  }
+  .voice__h2::before {
+    font-size: 16px;
+}
+#voice_top {
+  padding: 70px 0;
+}
+}
+/*==========================
+news
+==========================*/
+#news {
+  max-width: 1160px;
+  margin: 140px auto;
+}
+.news__h2 {
+  font-size: 70px;
+  font-family: "Sawarabi Mincho", serif;
+  color: #3F83D1;
+  display: block;
+  position: relative;
+}
+.news__h2::before {
+  content: "お知らせ";
+  font-family: "Sawarabi Mincho", serif;
+  color: #3F83D1;
+  font-size: 18px;
+  position: absolute;
+  top: -10px;
+}
+.news__list {
+  padding: 10px 30px;
+}
+.news__item {
+  border-top: 1px solid #323232;
+}
+.news__item:last-child {
+  border-bottom: 1px solid #323232;
+}
+.news__item a {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  padding: 10px 40px;
+}
+.news__item time {
+  margin-right: 40px;
+}
+@media screen and (max-width:769px) {
+#news{
+  margin: 70px 2.6%;
+}
+.news__h2 {
+  font-size: 55px;
+}
+.news__h2::before {
+  font-size: 16px;
+}
+.news__item a {
+  display: block;
+  padding: 10px 15px;
+}
+.news__item time {
+  display: block;
+  margin-bottom: 10px;
+}
+}
+/*==========================
+otherLink
+==========================*/
+.otherLink {
+  max-width: 1450px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 90px;
+}
+.company {
+  background-image: url(../images/company.jpg);
+}
+.recruit {
+  background-image: url(../images/recruit.jpg);
+}
+.company,
+.recruit{
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 700px;
+  height: 340px;
+  position: relative;
+}
+.company::before,
+.recruit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(220, 213, 213, 0.2);
+}
+.sub_title {
+  font-family: "Sawarabi Mincho", serif;
+  font-size: 35px;
+}
+.company div,
+.recruit div {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+}
+@media screen and (max-width:769px) {
+  .otherLink {
+    display: block;
+    width: 100%;
+    padding: 10px 2.6%;
+  }
+  .company,
+  .recruit {
+    width: 100%;
+    height: 300px;
+  }
+  .company {
+    margin-bottom: 15px;
+  }
+  .company div,
+.recruit div {
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+}

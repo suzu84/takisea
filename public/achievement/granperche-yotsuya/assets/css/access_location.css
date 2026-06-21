@@ -1,0 +1,225 @@
+@charset "UTF-8";
+main {
+  padding-top: 134px;
+}
+.mainVisual {
+  position: relative;
+  width: 100%;
+  background-image: url(../images/access_location/mv.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 550px;
+}
+@media screen and (max-width:769px) {
+  main {
+    padding-top: 70px;
+  }
+  .mainVisual {
+    height: 350px;
+  }
+}
+#access {
+  max-width: 1100px;
+  margin: 70px auto;
+  text-align: center;
+}
+.access__h3 {
+  font-size: 3rem;
+  color: #cfbf7d;
+  margin-bottom: 20px;
+}
+.access__topic {
+  margin: 40px 0;
+}
+.access__station {
+  margin: 70px 0;
+}
+.access__station__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: calc(110px / 2);
+}
+.access__station__item {
+  max-width: 330px;
+}
+@media screen and (max-width:769px) {
+  #access {
+    margin: 50px auto;
+    padding: 0 2.6%;
+    text-align: center;
+  }
+  .access__h3 {
+    font-size: 2.6rem;
+    color: #cfbf7d;
+    margin-bottom: 10px;
+  }
+  .access__topic {
+    margin: 30px 0;
+  }
+  .access__station {
+    margin: 0;
+    padding: 50px 0;
+  }
+  .access__station__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5%;
+  }
+  .access__station__item {
+    max-width: 330px;
+  }
+}
+#taxi {
+  background: #cfbf7d;
+  padding: 70px 0;
+}
+.taxi__h3 {
+  font-size: 3rem;
+  text-align: center;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+}
+.taxi__information {
+  max-width: 1100px;
+  margin: 40px auto;
+}
+th {
+  background: #293040;
+  color: #fff;
+  width: calc(800px / 4);
+  text-align: center;
+  font-size: 1.6rem;
+  padding: 10px;
+  border: 1px solid #cfbf7d;
+}
+th:first-child {
+  width: calc(1100px - 800px);
+}
+td {
+  font-size: 1.6rem;
+  padding: 10px;
+  border: 1px solid #cfbf7d;
+  background: #fff;
+  text-align: center;
+}
+.taxi__information .annotation p {
+  color: #1a1a1a;
+}
+@media screen and (max-width:769px) {
+  #taxi {
+    background: #cfbf7d;
+    padding: 50px 0;
+  }
+  .taxi__h3 {
+    font-size: 2.6rem;
+    margin-bottom: 10px;
+  }
+  .taxi__information {
+    max-width: 1100px;
+    margin: 30px auto;
+  }
+  .taxi__information table,
+  .taxi__information .annotation
+   {
+    width: 800px;
+  }
+  th {
+    background: #293040;
+    color: #fff;
+    width: calc(800px / 4);
+    text-align: center;
+    font-size: 1.6rem;
+    padding: 10px;
+    border: 1px solid #cfbf7d;
+  }
+  th:first-child {
+    width: calc(1100px - 800px);
+  }
+  td {
+    font-size: 1.6rem;
+    padding: 10px;
+    border: 1px solid #cfbf7d;
+    background: #fff;
+    text-align: center;
+  }
+  .taxi__information .annotation p {
+    color: #1a1a1a;
+  }
+}
+#location {
+  max-width: 1100px;
+  margin: 70px auto 0;
+  text-align: center;
+  padding-bottom: 70px;
+}
+.location__h3 {
+  font-size: 3rem;
+  color: #cfbf7d;
+  margin-bottom: 20px;
+}
+.location__topic {
+  margin: 40px 0;
+}
+.location__content {
+  display: flex;
+  justify-content: space-between;
+}
+.location__content img {
+  display: block;
+  width: 50%;
+}
+.location__txt {
+  width: 45%;
+  text-align: start;
+}
+.location__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: calc(100px - 3);
+  margin: 40px 0;
+}
+.location__item {
+  max-width: 250px;
+  height: 233px;
+}
+.location__item p {
+  text-align: start;
+}
+@media screen and (max-width:769px) {
+  #location {
+    margin: 50px auto 0;
+    padding: 0 2.6% 50px;
+  }
+  .location__h3 {
+    font-size: 2.6rem;
+    color: #cfbf7d;
+    margin-bottom: 10px;
+  }
+  .location__topic {
+    margin: 20px 0;
+  }
+  .location__content {
+    display: block;
+  }
+  .location__content img {
+    width: 100%;
+  }
+  .location__txt {
+    margin-top: 10px;
+    width: 100%;
+  }
+  .location__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 10px;
+    margin: 40px 0;
+  }
+  .location__item {
+    max-width: 100%;
+    height: 140px;
+  }
+  .location__item p {
+    text-align: start;
+  }
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head class="prefix=”og: http://ogp.me/ns#">
+	
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>お問合せ入力画面 | 平令不動産</title>
+
+<link rel="canonical" href="">
+
+<link rel="canonical" href="">
+
+<meta name="description" content="ページの説明文">
+ <!-- ogp -->
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="お問合せ入力画面">
+<meta property="og:description" content="ページの説明文">
+
+<meta property="og:type" content="website">
+
+<meta property="og:type" content="article">
+
+<meta property="og:url" content="">
+<meta property="og:image" content="/ogp-image.png">
+<meta property="og:site_name" content="平令不動産">
+ <!-- web font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="../slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="../slick/slick-theme.css" />
+<link rel="stylesheet" href="../assets/css/destyle.min.css"> 
+<link rel="stylesheet" href="../assets/css/common.css">
+
+<link rel="stylesheet" href="../assets/css/top.css">
+
+<link rel="stylesheet" href="../assets/css/contact.css">
+
+</head>
+
+<body>
+	<!-- ナビ部分に任意の番号を振ってその番号が呼び出されたらclass'current'が付与される -->
+
+<header class="header">
+  <h1 class="header__topic"><a href=""><img src="assets/images/logo.png" alt="平令不動産"></a></h1>
+  <nav class="nav">
+    <div class="nav__menuSp">
+      <span></span><span></span>
+    </div>
+    <div class="nav__menu">
+      <ul class="nav__list">
+        <li class="nav__item"><a href="company/" class="">会社情報</a></li>
+        <li class="nav__item"><a href="business/" class="">事業紹介</a></li>
+        <li class="nav__item"><a href="voice/" class="">お客様の声</a></li>
+        <li class="nav__item"><a href="strength/" class="">自社の想い</a></li>
+        <li class="nav__item"><a href="recruit/" class="">採用情報</a></li>
+        <li class="nav__item">
+          <div class="nav__contact">
+            <a href="contact/">お問合せ</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+	<main class="main">
+		<div class="mainVisual-2">
+			<h1 class="mainVisual-2__h1">お問合せ</h1>
+		</div>
+		<div class="contact__read">
+			<p>
+				弊社に関するお問合せについては、下記フォームよりお問合せください。<br>
+				また、採用に関してもこちらのフォームより承っております。<br>
+				新卒・中途共に絶賛募集中ですので、お気軽にご応募ください。
+			</p>
+		</div>
+		<div class="contact__form">
+			<form action="complete/" method="post">
+				<div class="contact__item">
+					<div class="contact__label">
+						<p>お問合せ項目<span>必須</span></p>
+					</div>
+					<div class="contact__contents">
+						<div>
+							<input type="radio" id="rent" name="content" value="rent"><label for="rent">賃貸について</label>
+						</div>
+						<div>
+							<input type="radio" id="buy" name="content" value="buy"><label for="buy">売買について</label>
+						</div>
+						<div>
+							<input type="radio" id="management" name="content" value="management"><label for="management">管理について</label>
+						</div>
+						<div>
+							<input type="radio" id="recruit" name="content" value="recruit"><label for="recruit">採用について</label>
+						</div>
+						<div>
+							<input type="radio" id="other" name="content" value="other"><label for="other">その他</label>
+						</div>
+					</div>
+				</div>
+				<div class="contact__item">
+					<div class="contact__label">
+						<p>お問合せ内容<span>必須</span></p>
+					</div>
+					<div class="contact__contents">
+						<textarea name="contact__textarea" id="textarea" required></textarea>
+					</div>
+				</div>
+				<div class="contact__item">
+					<div class="contact__label">
+						<p>氏名<span>必須</span></p>
+					</div>
+					<div class="contact__contents">
+						<input type="text" id="contact__input" name="name" required>
+					</div>
+				</div>
+				<div class="contact__item">
+					<div class="contact__label">
+						<p>住所</p>
+					</div>
+					<div class="contact__contents">
+						<input type="text" id="contact__input" name="name">
+					</div>
+				</div>
+				<div class="contact__item">
+					<div class="contact__label">
+						<p>電話番号</p>
+					</div>
+					<div class="contact__contents">
+						<input type="text" id="contact__input" name="name">
+					</div>
+				</div>
+				<div class="contact__item">
+					<div class="contact__label">
+						<p>メールアドレス<span>必須</span></p>
+					</div>
+					<div class="contact__contents">
+						<input type="text" id="contact__input" name="name" required>
+					</div>
+				</div>
+		</div>
+		<input type="submit" class="Form-Btn btnBlue" value="送信する">
+		</form>
+	</main>
+	
+<footer class="footer">
+  <div class="footer__content">
+    <div class="footer__nav">
+      <a href=""><img src="assets/images/logo.png" alt="平令不動産" class="footer__topic"></a>
+      <ul class="footer__list">
+        <li class="footer__item"><a href="company/" class="">会社情報</a></li>
+        <li class="footer__item"><a href="business/" class="">事業紹介</a></li>
+        <li class="footer__item"><a href="voice/" class="">お客様の声</a></li>
+        <li class="footer__item"><a href="strength/" class="">自社の想い</a></li>
+        <li class="footer__item"><a href="news/" class="">お知らせ</a></li>
+        <li class="footer__item"><a href="recruit/" class="">採用情報</a></li>
+      </ul>
+    </div>
+    <div class="footer__contact">
+      <p class="footer__txt">お問合せはこちら</p>
+      <p class="footet_deatil">
+        TEL：03-××××-××××<br>
+        <span>(受付時間 9:00〜18:00)</span>
+      </p>
+      <a href="contact/" class="btnBlue">お問合せフォーム</a>
+    </div>
+  </div>
+  <p class="copy"><small>Copyright &copy; 2025 HEIREI HUDOSAN Co.,Ltd. All rights reserved.</small></p>
+</footer><script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="../slick/slick.min.js"></script>
+<script src="../assets/js/main.js"></script>
+	<script src="../assets/js/contact.js"></script>
+</body>
+
+</html>

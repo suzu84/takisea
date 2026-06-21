@@ -8,6 +8,7 @@ import type { Column, Block } from "@/lib/microcms";
 import { processContent, processBlocks } from "@/lib/toc";
 import TableOfContents from "@/app/_components/TableOfContents";
 import ColumnSidebar from "@/app/_components/ColumnSidebar";
+import PostContent from "./PostContent";
 import styles from "./page.module.css";
 
 type Props = {
@@ -183,10 +184,7 @@ export default async function ColumnDetailPage({ params, searchParams }: Props) 
             return (
               <div key={i}>
                 {block.richText && (
-                  <div
-                    className={styles.postContent}
-                    dangerouslySetInnerHTML={{ __html: block.richText }}
-                  />
+                  <PostContent html={block.richText} />
                 )}
                 {article && (
                   <div className={styles.relatedArticles}>
@@ -211,10 +209,7 @@ export default async function ColumnDetailPage({ params, searchParams }: Props) 
             );
           })
         ) : (
-          <div
-            className={styles.postContent}
-            dangerouslySetInnerHTML={{ __html: processedContent! }}
-          />
+          <PostContent html={processedContent!} />
         )}
 
         {/* 著者プロフィール */}
