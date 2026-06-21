@@ -4,14 +4,13 @@ import type { NextRequest } from "next/server";
 export function middleware(request: NextRequest) {
   const host = request.headers.get("host") || "";
 
-  if (
-    process.env.NODE_ENV === "production" &&
-    !host.includes("takisea.com")
-  ) {
-    const url = request.nextUrl.clone();
-    url.host = "takisea.com";
-    url.protocol = "https:";
-    return NextResponse.redirect(url, 301);
+  if (process.env.NODE_ENV === "production") {
+    if (!host.includes("takisea.com") || host.startsWith("www.")) {
+      const url = request.nextUrl.clone();
+      url.host = "takisea.com";
+      url.protocol = "https:";
+      return NextResponse.redirect(url, 301);
+    }
   }
 
   return NextResponse.next();
